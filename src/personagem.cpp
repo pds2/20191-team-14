@@ -1,54 +1,56 @@
-#include <stdlib>
+#include "personagem.h"
+#include <iostream>
 
-public class Personagem {
-    private:
-        int HP; //Pontos de vida
-        int MP; //Pontos de movimentação
-        int SP; //Pontos de Habilidade
-        int dano; // Quantidade base de dano
-        char direcao; //Direcao para qual está olhando (Excenssial para habilidades do assassino)
-        
-    public:
-        Personagem(int _HP, int _MP, int _SP, int _dano, char _direcao){
-            setHP(_HP);
-            setMP(_MP);
-            setSP(_SP);
-            setDano(_dano);
-            setDirecao(_direcao);
-        }
 
-        int getHP(){
-            return HP;
-        }
-        void setHP(int _HP){
-            HP = _HP;
-        }
+Personagem::Personagem(int _HP, int _MP, int _SP, int _dano, char _direcao){
+    setHP(_HP);
+    setMP(_MP);
+    setSP(_SP);
+    setDano(_dano);
+    setDirecao(_direcao);
+}
 
-        int getMP(){
-            return MP;
-        }
-        void setMP(int _MP){
-            MP = _MP;
-        }
 
-        int getSP(){
-            return SP;
-        }
-        void setSP(int _SP){
-            SP = _SP;
-        }
+int Personagem::getHP(){
+    return HP;
+}
 
-        int getDano(){
-            return dano;
-        }
-        void setDano(int _dano){
-            dano = _dano;
-        }
+void Personagem::setHP(int _HP){
+    HP = _HP;
+}
 
-        char getDirecao(){
-            return direcao;
-        }
-        void setDirecao(char _direcao){
-            direcao = _direcao;
-        }
+
+int Personagem::getMP(){
+    return MP;
+}
+
+void Personagem::setMP(int _MP){
+    MP = _MP;
+}
+
+
+int Personagem::getSP(){
+    return SP;
+}
+
+void Personagem::setSP(int _SP){
+    SP = _SP;
+}
+
+
+int Personagem::getDano(){
+    return dano;
+}
+
+void Personagem::setDano(int _dano){
+    dano = _dano;
+}
+
+
+char Personagem::getDirecao(){
+    return direcao;
+}
+
+void Personagem::setDirecao(char _direcao){
+    direcao = _direcao;
 }
