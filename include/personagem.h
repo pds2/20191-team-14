@@ -19,16 +19,20 @@ class Personagem{
         //gets e sets dos atributos
         int getHP();
         void setHP(int _HP);
+
         int getMP();
         void setMP(int _MP);
+
         int getSP();
         void setSP(int _SP);
+
         int getDano();
         void setDano(int _dano);
+
         char getDirecao();
         void setDirecao(char _direcao);
 
-        void movimenta();//Mover personagem no mapa a partir dos MPs
+        void movimenta(int linha,int coluna, int linDestino, int colDestino);//Mover personagem no mapa a partir dos MPs
 
         virtual void ataque()=0;//Todo personagem ataca,cada um de seu jeito(aplica polimorfismo)
 };
