@@ -3,57 +3,41 @@
     j - jogador
     m - monstro
     p - pedra
-    i - invulneralvel (Shield do Guerreiro por exemplo)
+    i - invulnerável (Shield do Guerreiro e parede, por exemplo)
+    v - vazio
 */
 #ifndef GAME_CELULA_H
 #define GAME_CELULA_H
 
-#include "guerreiro.h"
-#include "mago.h"
-#include "ladrao.h"
-#include "barbaro.h"
+#include "personagem.h"
 
 /*Quando houver um personagem na célula, ela recebe um ponteiro para esse personagem
 O personagem será manipulado conforme as necessidades do jogo a partir deste ponteiro
 Destruir o ponteiro quando o personagem andar para outra célula*/    
 
-class Celula{
+class Celula {
     private:
-        char elemento;
-        int linha,coluna;
-        Guerreiro *guerreiro;
-        Mago *mago;
-        Ladrao *ladrao;
-        Barbaro *barbaro;
+        char _elemento;
+        int _x, _y;
+        Personagem* _personagem;
+
     public:
-        Celula(char _elemento, int _linha, int _coluna);
-        Celula(char _elemento, int _linha, int _coluna, Guerreiro *_guerreiro);
-        Celula(char _elemento, int _linha, int _coluna, Mago *_mago);
-        Celula(char _elemento, int _linha, int _coluna, Ladrao *_ladrao);
-        Celula(char _elemento, int _linha, int _coluna, Barbaro *_barbaro);
+        Celula(char elemento, int x, int y);
 
-        void setElemento(char _elemento);
+        //Getters e setters dos atributos
         char getElemento();
+        void setElemento(char elemento);
 
-        void setLinha(int _linha);
-        int getLinha();
+        int getX();
+        void setX(int x);
 
-        void setColuna(int _coluna);
-        int getColuna();
+        int getY();
+        void setY(int y);
 
+        Personagem* getPersonagem();
+        void setPersonagem(Personagem* personagem);
 
-        void setGuerreiro(Guerreiro *_guerreiro);
-        Guerreiro getGuerreiro();
-
-        void setMago(Mago *_mago);
-        Mago getMago();
-
-        void setLadrao(Ladrao *_ladrao);
-        Ladrao getLadrao();
-
-        void setBarbaro(Barbaro *_barbaro);
-        Barbaro getBarbaro();
-
+        void desalocaPersonagem(); //Função para desalocar ponteiro para personagem após ele deixar a célula
 };
 
 #endif

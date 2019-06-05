@@ -1,40 +1,59 @@
-/*ACEITO SUJETÕES PARA NOVOS MÉTODOS, PRINCIPALMENTE PRA APLICAR POLIMORFISMO*/
-
 #ifndef GAME_PERSONAGEM_H
 #define GAME_PERSONAGEM_H
 
-class Personagem{
-    private:
+#include "celula.h"
+
+class Personagem {
+    protected:
     /*Variáveis que representam atributos dos personagens*/
-        int HP; //Pontos de vida
-        int MP; //Pontos de movimentação
-        int SP; //Pontos de Habilidade
-        int dano; // Quantidade base de dano
-        char direcao; //Direcao para qual está olhando (Excenssial para habilidades do assassino)
+        int _totalHP; //Pontos de vida totais
+        int _HP; //Pontos de vida atuais
+        int _totalMP; // Pontos de movimentação totais
+        int _MP; //Pontos de movimentação atuais
+        int _totalSP; //Pontos de habilidade totais
+        int _SP; //Pontos de habilidade atuais
+        int _dano; // Quantidade base de dano
+        char _direcao; //Direcao para qual está olhando (Essencial para habilidades do assassino) 
+        //(N - norte, S - sul, L - leste, O - oeste)
+        Celula* _celula; // Célula atual do personagem
 
     public:
         //Construtor
-        Personagem(int _HP, int _MP, int _SP, int _dano, char _direcao);
+        Personagem(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula);
 
-        //gets e sets dos atributos
+        //Getters e setters dos atributos
+        int getTotalHP();
+        void setTotalHP(int totalHP);
+
         int getHP();
-        void setHP(int _HP);
+        void setHP(int HP);
+
+        int getTotalMP();
+        void setTotalMP(int totalMP);
 
         int getMP();
-        void setMP(int _MP);
+        void setMP(int MP);
+
+        int getTotalSP();
+        void setTotalSP(int totalSP);
 
         int getSP();
-        void setSP(int _SP);
+        void setSP(int SP);
 
         int getDano();
-        void setDano(int _dano);
+        void setDano(int dano);
 
         char getDirecao();
-        void setDirecao(char _direcao);
+        void setDirecao(char direcao);
+        
+        Celula* getCelula();
+        void setCelula(Celula* celula);
 
-        void movimenta(int linha,int coluna, int linDestino, int colDestino);//Mover personagem no mapa a partir dos MPs
+        bool movimenta(Celula* celula); //Mover personagem no mapa a partir dos MPs
 
-        virtual void ataque()=0;//Todo personagem ataca,cada um de seu jeito(aplica polimorfismo)
+        virtual bool ataque(Celula* celula) = 0; //Todo personagem ataca, cada um de seu jeito(aplica polimorfismo)
+
+        void terminaTurno();
 };
 
 #endif

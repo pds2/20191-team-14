@@ -1,56 +1,101 @@
 #include "personagem.h"
 #include <iostream>
 
-
-Personagem::Personagem(int _HP, int _MP, int _SP, int _dano, char _direcao){
-    setHP(_HP);
-    setMP(_MP);
-    setSP(_SP);
-    setDano(_dano);
-    setDirecao(_direcao);
+Personagem::Personagem(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula){
+    setTotalHP(totalHP);
+    setHP(totalHP);
+    setTotalMP(totalMP);
+    setMP(totalMP);
+    setTotalSP(totalSP);
+    setSP(totalSP);
+    setDano(dano);
+    setDirecao(direcao);
+    setCelula(celula);
 }
-
 
 int Personagem::getHP(){
-    return HP;
+    return _HP;
 }
 
-void Personagem::setHP(int _HP){
-    HP = _HP;
+void Personagem::setHP(int HP){
+    _HP = HP;
 }
-
 
 int Personagem::getMP(){
-    return MP;
+    return _MP;
 }
 
-void Personagem::setMP(int _MP){
-    MP = _MP;
+void Personagem::setMP(int MP){
+    _MP = MP;
 }
-
 
 int Personagem::getSP(){
-    return SP;
+    return _SP;
 }
 
-void Personagem::setSP(int _SP){
-    SP = _SP;
+void Personagem::setSP(int SP){
+    _SP = SP;
 }
-
 
 int Personagem::getDano(){
-    return dano;
+    return _dano;
 }
 
-void Personagem::setDano(int _dano){
-    dano = _dano;
+void Personagem::setDano(int dano){
+    _dano = dano;
 }
-
 
 char Personagem::getDirecao(){
-    return direcao;
+    return _direcao;
 }
 
-void Personagem::setDirecao(char _direcao){
-    direcao = _direcao;
+void Personagem::setDirecao(char direcao){
+    _direcao = direcao;
+}
+
+Celula* Personagem::getCelula(){
+    return _celula;
+}
+
+void Personagem::setCelula(Celula* celula){
+    _celula = celula;
+}
+
+bool Personagem::movimenta(Celula* celula){
+    //Se a célula destino for a mesma que a célula origem, retorna false
+    if (celula == _celula || celula->getElemento() != 'v')
+        return false;
+
+    int movimentosX, movimentosY;
+
+    //Conta movimentos horizontais
+    movimentosX = celula->getX() - _celula->getX();
+    if (movimentosX < 0){
+        movimentosX *= -1;
+        _direcao = 'O';
+    } else {
+        _direcao = 'L';
+    }
+
+    //Conta movimentos verticais
+    movimentosY = celula->getY() - _celula->getY();
+    if (movimentosY < 0){
+        movimentosY *= -1;
+        _direcao = 'S';
+    } else {
+        _direcao = 'N';
+    }
+
+    //Verifica se o personagem possui MPs suficientes
+    if (movimentosX + movimentosY <= _MP) {
+        _MP -= movimentosX + movimentosY;
+        celula->setElemento('j');
+        return true; //Se o movimento é válido, retorna true
+    } else {
+        return false; //Se o movimento é inválido, retorna false
+    }
+}
+
+void Personagem::terminaTurno(){
+    _MP = _totalMP;
 }

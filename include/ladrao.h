@@ -6,7 +6,8 @@
 class Ladrao : public Personagem {     
     public:
         Ladrao();
-};
 
+        void ataque() override;
+};
 
 #endif
