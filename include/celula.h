@@ -3,7 +3,7 @@
     j - jogador
     m - monstro
     p - pedra
-    i - invulnerável (Shield do Guerreiro e parede, por exemplo)
+    i - invulnerável (Parede, por exemplo)
     v - vazio
 */
 #ifndef GAME_CELULA_H
@@ -22,6 +22,8 @@ class Celula {
         Personagem* _personagem;
 
     public:
+        Celula();
+        Celula(int x, int y);
         Celula(char elemento, int x, int y);
 
         //Getters e setters dos atributos
