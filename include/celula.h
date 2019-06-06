@@ -5,6 +5,7 @@
     p - pedra
     i - invulnerável (Parede, por exemplo)
     v - vazio
+    n - null (Ainda não definido)
 */
 #ifndef GAME_CELULA_H
 #define GAME_CELULA_H
