@@ -53,7 +53,7 @@ class Personagem {
 
         virtual bool ataque(Celula* celula) = 0; //Todo personagem ataca, cada um de seu jeito(aplica polimorfismo)
 
-        void terminaTurno();
+        void terminaTurno(); //Recupera SPs e MPs do personagem
 };
 
 #endif
