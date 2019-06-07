@@ -52,6 +52,8 @@ class Personagem {
         bool movimenta(Celula* celula); //Mover personagem no mapa a partir dos MPs
 
         virtual bool ataque(Celula* celula) = 0; //Todo personagem ataca, cada um de seu jeito(aplica polimorfismo)
+        virtual bool ataque(Celula* celula, Celula** mapa) = 0; //Personagens com ataque à distância precisam de um
+                                                                //ponteiro para o mapa para verificar obstáculos
 
         void terminaTurno(); //Recupera SPs e MPs do personagem
 };

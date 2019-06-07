@@ -15,7 +15,7 @@ bool Barbaro::ataque(Celula* celula){
     if (celula->getPersonagem() == nullptr) //Se não há ninguém a ser atacado, retorna falso
         return false;
 
-    //Verifica se o inimigo está ao alcance do mago
+    //Verifica se o inimigo está ao alcance do bárbaro
     if (celula->getX() > _celula->getX()){
         distancia = celula->getX() - _celula->getX();
     } else {

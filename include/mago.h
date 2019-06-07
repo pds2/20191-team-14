@@ -7,7 +7,7 @@ class Mago : public Personagem {
     public:
         Mago(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula);
 
-        bool ataque(Celula* celula) override;
+        bool ataque(Celula* celula, Celula** mapa) override;
 };
 
 #endif
