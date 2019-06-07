@@ -1,33 +1,38 @@
 #include "barbaro.h"
 
+#define _ALCANCE 1
+#define _CUSTO_ATAQUE_BASICO 2
+
 Barbaro::Barbaro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
         Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {}
 
 bool Barbaro::ataque(Celula* celula){
-    bool ataqueValido = false;
+    int distancia;
+
+    if (_SP < _CUSTO_ATAQUE_BASICO) //Se o personagem não possui SPs o suficiente, retorna falso
+        return false;
 
     if (celula->getPersonagem() == nullptr) //Se não há ninguém a ser atacado, retorna falso
         return false;
 
-    //Verifica se o inimigo está em uma célula diretamente adjacente à do bárbaro
-    if (celula->getX() == _celula->getX() - 1 || celula->getX() == _celula->getX() + 1){
-        if (celula->getY() == _celula->getY()){
-            ataqueValido = true;
-        } else {
-            return false;
-        }
-    } else if (celula->getY() == _celula->getY() - 1 || celula->getY() == _celula->getY() + 1){
-        if (celula->getX() == _celula->getX()){
-            ataqueValido = true;
-        } else {
-            return false;
-        }
+    //Verifica se o inimigo está ao alcance do bárbaro
+    if (celula->getX() > _celula->getX()){
+        distancia = celula->getX() - _celula->getX();
     } else {
-        return false;
+        distancia = _celula->getX() - celula->getX();
     }
 
-    if (ataqueValido){
+    if (celula->getY() > _celula->getY()){
+        distancia += celula->getY() - _celula->getY();
+    } else {
+        distancia += _celula->getY() - celula->getY();
+    }
+
+    if (distancia > 0 && distancia <= _ALCANCE){ //Conclui o ataque se ele for válido
         celula->getPersonagem()->setHP(celula->getPersonagem()->getHP() - _dano);
+        _SP -= _CUSTO_ATAQUE_BASICO;
         return true;
+    } else { //Retorna false se for inválido
+        return false;
     }
 }

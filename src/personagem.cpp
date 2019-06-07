@@ -97,5 +97,6 @@ bool Personagem::movimenta(Celula* celula){
 }
 
 void Personagem::terminaTurno(){
+    _SP = _totalSP;
     _MP = _totalMP;
 }
