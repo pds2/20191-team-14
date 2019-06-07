@@ -4,10 +4,14 @@
 #include "personagem.h"
 
 class Guerreiro : public Personagem {
+    private:
+        int _escudo;
+
     public:
         Guerreiro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula);
 
-        bool ataque(Celula* celula) override;
+        bool ataque(Celula* alvo) override;
+        bool defesa();
 };
 
 #endif

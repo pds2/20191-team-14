@@ -16,6 +16,7 @@ class Personagem {
         char _direcao; //Direcao para qual está olhando (Essencial para habilidades do assassino) 
         //(N - norte, S - sul, L - leste, O - oeste)
         Celula* _celula; // Célula atual do personagem
+        int _atordoado; //Quantidade de turnos em que o personagem não poderá agir se for atordoado
 
     public:
         //Construtor
@@ -49,10 +50,13 @@ class Personagem {
         Celula* getCelula();
         void setCelula(Celula* celula);
 
-        bool movimenta(Celula* celula); //Mover personagem no mapa a partir dos MPs
+        int getAtordoado();
+        void setAtordoado(int atordoado);
 
-        virtual bool ataque(Celula* celula) = 0; //Todo personagem ataca, cada um de seu jeito(aplica polimorfismo)
-        virtual bool ataque(Celula* celula, Celula** mapa) = 0; //Personagens com ataque à distância precisam de um
+        bool movimenta(Celula* destino); //Mover personagem no mapa a partir dos MPs
+
+        virtual bool ataque(Celula* alvo) = 0; //Todo personagem ataca, cada um de seu jeito(aplica polimorfismo)
+        virtual bool ataque(Celula* alvo, Celula** mapa) = 0; //Personagens com ataque à distância precisam de um
                                                                 //ponteiro para o mapa para verificar obstáculos
 
         void terminaTurno(); //Recupera SPs e MPs do personagem

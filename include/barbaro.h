@@ -3,11 +3,15 @@
 
 #include "personagem.h"
 
-class Barbaro : public Personagem {     
+class Barbaro : public Personagem {
+    private:
+        int _danoExtra;
+
     public:
         Barbaro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula);
 
-        bool ataque(Celula* celula) override;
+        bool ataque(Celula* alvo) override;
+        bool berserk();
 };
 
 #endif
