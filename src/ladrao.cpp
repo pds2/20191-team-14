@@ -13,6 +13,14 @@ Ladrao::Ladrao(int totalHP, int totalMP, int totalSP, int dano, char direcao, Ce
             _danoCritico = _dano * _BONUS_CRITICO;
         }
 
+int Ladrao::getDanoCritico(){
+    return _danoCritico;
+}
+
+void Ladrao::setDanoCritico(int danoCritico){
+    _danoCritico = danoCritico;
+}
+
 bool Ladrao::ataque(Celula* celula){
     bool ataqueValido = false;
 

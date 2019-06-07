@@ -10,8 +10,13 @@ class Barbaro : public Personagem {
     public:
         Barbaro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula);
 
+        int getDanoExtra();
+        void setDanoExtra(int danoExtra);
+
         bool ataque(Celula* alvo) override;
-        bool berserk();
+        bool berserk(); //Habilidade que aumenta o dano do próximo ataque do bárbaro;cumulativa dentro do turno
+
+        void terminaTurno() override;
 };
 
 #endif

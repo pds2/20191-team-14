@@ -57,9 +57,10 @@ class Personagem {
 
         virtual bool ataque(Celula* alvo) = 0; //Todo personagem ataca, cada um de seu jeito(aplica polimorfismo)
         virtual bool ataque(Celula* alvo, Celula** mapa) = 0; //Personagens com ataque à distância precisam de um
-                                                                //ponteiro para o mapa para verificar obstáculos
+                                                            //ponteiro para o mapa para verificar obstáculos
 
-        void terminaTurno(); //Recupera SPs e MPs do personagem
+        virtual void terminaTurno(); //Recupera SPs e MPs do personagem;pode ser sobrescrita pra permitir
+                                    //alterações em outros atributos
 };
 
 #endif
