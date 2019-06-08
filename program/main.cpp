@@ -13,7 +13,7 @@ Celula** criaMapa(){
     }
 
     for (int i = 0; i < 100; i++){
-        for (int j = 0; j < 100; j++){   
+        for (int j = 0; j < 100; j++){
             mapa[i][j] = Celula(i, j); //TODO: usar construtor com elemento para desenhar o mapa
         }
     }
@@ -25,7 +25,7 @@ Celula** criaMapa(){
 void deletaMapa(Celula** mapa){
     for (int i = 0; i < _LINHAS; i++)
         delete [] mapa[i];
-    
+
     delete [] mapa;
 }
 
