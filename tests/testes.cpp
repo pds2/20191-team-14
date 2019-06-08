@@ -11,7 +11,10 @@
 
 #include <string>
 
-TEST_CASE("01 - Teste validade do ataque"){
+TEST_CASE("01 - teste construtor celula"){
+     CHECK_NOTHROW(Celula());
+}
 
+TEST_CASE (""){
     
 }
