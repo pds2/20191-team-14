@@ -3,6 +3,14 @@
 
 #include "personagem.h"
 
+#define _ALCANCE_ADAGA 1
+#define _ALCANCE_ARCO 3
+
+#define _CUSTO_ATAQUE_BASICO 2
+#define _CUSTO_ATAQUE_ARCO 3
+
+#define _BONUS_CRITICO 2
+
 class Ladrao : public Personagem {
     private:
         int _danoCritico;

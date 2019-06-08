@@ -3,6 +3,9 @@
 
 #include "personagem.h"
 
+#define _ALCANCE 1
+#define _CUSTO_ATAQUE_BASICO 3
+
 class Guerreiro : public Personagem {
     private:
         int _escudo;

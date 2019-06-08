@@ -1,7 +1,5 @@
 #include "guerreiro.h"
 
-#define _ALCANCE 1
-#define _CUSTO_ATAQUE_BASICO 3
 
 Guerreiro::Guerreiro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
         Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {}

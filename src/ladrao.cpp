@@ -1,12 +1,5 @@
 #include "ladrao.h"
 
-#define _ALCANCE_ADAGA 1
-#define _ALCANCE_ARCO 3
-
-#define _CUSTO_ATAQUE_BASICO 2
-#define _CUSTO_ATAQUE_ARCO 3
-
-#define _BONUS_CRITICO 2
 
 Ladrao::Ladrao(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
         Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {

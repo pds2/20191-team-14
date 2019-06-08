@@ -1,9 +1,5 @@
 #include "barbaro.h"
 
-#define _ALCANCE 1
-
-#define _CUSTO_ATAQUE_BASICO 2
-#define _CUSTO_BERSERK 2
 
 Barbaro::Barbaro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
         Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {

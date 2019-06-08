@@ -3,6 +3,11 @@
 
 #include "personagem.h"
 
+#define _ALCANCE 1
+
+#define _CUSTO_ATAQUE_BASICO 2
+#define _CUSTO_BERSERK 2
+
 class Barbaro : public Personagem {
     private:
         int _danoExtra;
