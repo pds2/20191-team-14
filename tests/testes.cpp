@@ -13,8 +13,15 @@
 
 TEST_CASE("01 - teste construtor celula"){
      CHECK_NOTHROW(Celula());
+     
+
+}
+
+TEST_CASE ("02 - teste retorno"){
+    
+
 }
 
 TEST_CASE (""){
-    
+
 }
