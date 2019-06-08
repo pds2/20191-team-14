@@ -11,6 +11,7 @@ Personagem::Personagem(int totalHP, int totalMP, int totalSP, int dano, char dir
     setDano(dano);
     setDirecao(direcao);
     setCelula(celula);
+    setAtordoado(0);
 }
 
 int Personagem::getHP(){
@@ -61,15 +62,23 @@ void Personagem::setCelula(Celula* celula){
     _celula = celula;
 }
 
-bool Personagem::movimenta(Celula* celula){
+int Personagem::getAtordoado(){
+    return _atordoado;
+}
+
+void Personagem::setAtordoado(int atordoado){
+    _atordoado = atordoado;
+}
+
+bool Personagem::movimenta(Celula* destino){
     //Se a célula destino for a mesma que a célula origem, retorna false
-    if (celula == _celula || celula->getElemento() != 'v')
+    if (destino == _celula || destino->getElemento() != 'v')
         return false;
 
     int movimentosX, movimentosY;
 
     //Conta movimentos horizontais
-    movimentosX = celula->getX() - _celula->getX();
+    movimentosX = destino->getX() - _celula->getX();
     if (movimentosX < 0){
         movimentosX *= -1;
         _direcao = 'O';
@@ -78,7 +87,7 @@ bool Personagem::movimenta(Celula* celula){
     }
 
     //Conta movimentos verticais
-    movimentosY = celula->getY() - _celula->getY();
+    movimentosY = destino->getY() - _celula->getY();
     if (movimentosY < 0){
         movimentosY *= -1;
         _direcao = 'S';
@@ -89,7 +98,7 @@ bool Personagem::movimenta(Celula* celula){
     //Verifica se o personagem possui MPs suficientes
     if (movimentosX + movimentosY <= _MP) {
         _MP -= movimentosX + movimentosY;
-        celula->setElemento('j');
+        destino->setElemento('j');
         return true; //Se o movimento é válido, retorna true
     } else {
         return false; //Se o movimento é inválido, retorna false
@@ -97,5 +106,9 @@ bool Personagem::movimenta(Celula* celula){
 }
 
 void Personagem::terminaTurno(){
+    _SP = _totalSP;
     _MP = _totalMP;
+    
+    if (_atordoado > 0)
+        _atordoado--;
 }
