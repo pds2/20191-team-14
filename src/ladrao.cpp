@@ -14,26 +14,26 @@ void Ladrao::setDanoCritico(int danoCritico){
     _danoCritico = danoCritico;
 }
 
-bool Ladrao::ataque(Celula* celula){
+bool Ladrao::ataque(Celula* alvo){
     bool ataqueValido = false;
 
     if (_SP < _CUSTO_ATAQUE_BASICO) //Se o personagem não possui SPs o suficiente, retorna falso
         return false;
 
-    if (celula->getPersonagem() == nullptr) //Se não há ninguém a ser atacado, retorna falso
+    if (alvo->getPersonagem() == nullptr) //Se não há ninguém a ser atacado, retorna falso
         return false;
     
     //Verifica se o inimigo está em uma célula diretamente adjacente à do guerreiro
-    if (celula->getX() == _celula->getX() - _ALCANCE_ADAGA || 
-            celula->getX() == _celula->getX() + _ALCANCE_ADAGA){
-        if (celula->getY() == _celula->getY()){
+    if (alvo->getX() == _celula->getX() - _ALCANCE_ADAGA || 
+           alvo->getX() == _celula->getX() + _ALCANCE_ADAGA){
+        if (alvo->getY() == _celula->getY()){
             ataqueValido = true;
         } else {
             return false;
         }
-    } else if (celula->getY() == _celula->getY() - _ALCANCE_ADAGA || 
-            celula->getY() == _celula->getY() + _ALCANCE_ADAGA){
-        if (celula->getX() == _celula->getX()){
+    } else if (alvo->getY() == _celula->getY() - _ALCANCE_ADAGA || 
+           alvo->getY() == _celula->getY() + _ALCANCE_ADAGA){
+        if (alvo->getX() == _celula->getX()){
             ataqueValido = true;
         } else {
             return false;
@@ -44,16 +44,16 @@ bool Ladrao::ataque(Celula* celula){
 
     //Se o ataque do ladrao é valido, ver se inimigo está de costas para dar critico
     if (ataqueValido){
-        if ((celula->getX() == _celula->getX() && 
-        ((celula->getY() == _celula->getY() - 1 && celula->getPersonagem()->getDirecao() == 'L') || 
-        (celula->getY() == _celula->getY() + 1 && celula->getPersonagem()->getDirecao() == 'O'))) ||
-        (celula->getY() == _celula->getY() && 
-        ((celula->getX() == _celula->getX() - 1 && celula->getPersonagem()->getDirecao() == 'N') || 
-        (celula->getX() == _celula->getX() + 1 && celula->getPersonagem()->getDirecao() == 'S')))){
-            celula->getPersonagem()->setHP(celula->getPersonagem()->getHP() - (_danoCritico));
+        if ((alvo->getX() == _celula->getX() && 
+        ((alvo->getY() == _celula->getY() - 1 && alvo->getPersonagem()->getDirecao() == 'L') || 
+        (alvo->getY() == _celula->getY() + 1 && alvo->getPersonagem()->getDirecao() == 'O'))) ||
+        (alvo->getY() == _celula->getY() && 
+        ((alvo->getX() == _celula->getX() - 1 && alvo->getPersonagem()->getDirecao() == 'N') || 
+        (alvo->getX() == _celula->getX() + 1 && alvo->getPersonagem()->getDirecao() == 'S')))){
+           alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - (_danoCritico));
         }
         else{
-            celula->getPersonagem()->setHP(celula->getPersonagem()->getHP() - _dano);
+           alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - _dano);
         }
 
         _SP -= _CUSTO_ATAQUE_BASICO;
