@@ -21,6 +21,7 @@ void Guerreiro::setHP(int HP){
 
 bool Guerreiro::ataque(Celula* alvo){
     int distancia;
+    char direcaoAntiga = _direcao;
 
     if (_SP < _CUSTO_ATAQUE_BASICO) //Se o personagem não possui SPs o suficiente, retorna falso
         return false;
@@ -31,21 +32,28 @@ bool Guerreiro::ataque(Celula* alvo){
     //Verifica se o inimigo está ao alcance do guerreiro
     if (alvo->getX() > _celula->getX()){
         distancia = alvo->getX() - _celula->getX();
+        _direcao = 'L';
     } else {
         distancia = _celula->getX() - alvo->getX();
+        if (alvo->getX() < _celula->getX())
+            _direcao = 'O';
     }
 
     if (alvo->getY() > _celula->getY()){
         distancia += alvo->getY() - _celula->getY();
+        _direcao = 'N';
     } else {
         distancia += _celula->getY() - alvo->getY();
+        if (alvo->getY() < _celula->getY())
+            _direcao = 'S';
     }
 
     if (distancia > 0 && distancia <= _ALCANCE){ //Conclui o ataque se ele for válido
         alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - _dano);
         _SP -= _CUSTO_ATAQUE_BASICO;
         return true;
-    } else { //Retorna false se for inválido
+    } else { //Retorna false e reseta direção se for inválido
+        _direcao = direcaoAntiga;
         return false;
     }
 }

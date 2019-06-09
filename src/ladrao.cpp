@@ -15,7 +15,8 @@ void Ladrao::setDanoCritico(int danoCritico){
 }
 
 bool Ladrao::ataque(Celula* alvo){
-    bool ataqueValido = false;
+    int distancia;
+    char direcaoAntiga = _direcao;
 
     if (_SP < _CUSTO_ATAQUE_BASICO) //Se o personagem não possui SPs o suficiente, retorna falso
         return false;
@@ -23,47 +24,42 @@ bool Ladrao::ataque(Celula* alvo){
     if (alvo->getPersonagem() == nullptr) //Se não há ninguém a ser atacado, retorna falso
         return false;
     
-    //Verifica se o inimigo está em uma célula diretamente adjacente à do guerreiro
-    if (alvo->getX() == _celula->getX() - _ALCANCE_ADAGA || 
-           alvo->getX() == _celula->getX() + _ALCANCE_ADAGA){
-        if (alvo->getY() == _celula->getY()){
-            ataqueValido = true;
-        } else {
-            return false;
-        }
-    } else if (alvo->getY() == _celula->getY() - _ALCANCE_ADAGA || 
-           alvo->getY() == _celula->getY() + _ALCANCE_ADAGA){
-        if (alvo->getX() == _celula->getX()){
-            ataqueValido = true;
-        } else {
-            return false;
-        }
+    //Verifica se o inimigo está ao alcance do ladrão
+    if (alvo->getX() > _celula->getX()){
+        distancia = alvo->getX() - _celula->getX();
+        _direcao = 'L';
     } else {
-        return false;
+        distancia = _celula->getX() - alvo->getX();
+        if (alvo->getX() < _celula->getX())
+            _direcao = 'O';
     }
 
-    //Se o ataque do ladrao é valido, ver se inimigo está de costas para dar critico
-    if (ataqueValido){
-        if ((alvo->getX() == _celula->getX() && 
-        ((alvo->getY() == _celula->getY() - 1 && alvo->getPersonagem()->getDirecao() == 'L') || 
-        (alvo->getY() == _celula->getY() + 1 && alvo->getPersonagem()->getDirecao() == 'O'))) ||
-        (alvo->getY() == _celula->getY() && 
-        ((alvo->getX() == _celula->getX() - 1 && alvo->getPersonagem()->getDirecao() == 'N') || 
-        (alvo->getX() == _celula->getX() + 1 && alvo->getPersonagem()->getDirecao() == 'S')))){
-           alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - (_danoCritico));
-        }
-        else{
-           alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - _dano);
-        }
+    if (alvo->getY() > _celula->getY()){
+        distancia += alvo->getY() - _celula->getY();
+        _direcao = 'N';
+    } else {
+        distancia += _celula->getY() - alvo->getY();
+        if (alvo->getY() < _celula->getY())
+            _direcao = 'S';
+    }
 
+    if (distancia > 0 && distancia <= _ALCANCE_ADAGA){ //Conclui o ataque se ele for válido
+        if (_direcao == alvo->getPersonagem()->getDirecao){
+            alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - _danoCritico);
+        } else {
+            alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - _dano);
+        }
         _SP -= _CUSTO_ATAQUE_BASICO;
-
         return true;
+    } else { //Retorna false e reseta direção se for inválido
+        _direcao = direcaoAntiga;
+        return false;
     }
 }
 
 bool Ladrao::arco(Celula* alvo, Celula** mapa){
     int distancia;
+    char direcaoAntiga = _direcao;
 
     if (_SP < _CUSTO_ATAQUE_ARCO) //Se o personagem não possui SPs o suficiente, retorna falso
         return false;
@@ -71,7 +67,7 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
     if (alvo->getPersonagem() == nullptr) //Se não há ninguém a ser atacado, retorna falso
         return false;
 
-    //Verifica se o inimigo está ao alcance do ladrão e se há obstáculos entre eles
+    //Verifica se o inimigo está ao alcance do arco do ladrão e se há obstáculos entre eles
     if (alvo->getX() > _celula->getX()){
         distancia = alvo->getX() - _celula->getX();
 
@@ -80,6 +76,8 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
                 return false;
             }
         }
+
+        _direcao = 'L';
     } else {
         distancia = _celula->getX() - alvo->getX();
 
@@ -88,6 +86,9 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
                 return false;
             }
         }
+
+        if (alvo->getX() < _celula->getX())
+            _direcao = 'O';
     }
 
     if (alvo->getY() > _celula->getY()){
@@ -98,6 +99,8 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
                 return false;
             }
         }
+
+        _direcao = 'N';
     } else {
         distancia += _celula->getY() - alvo->getY();
 
@@ -106,13 +109,17 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
                 return false;
             }
         }
+
+        if (alvo->getY() < _celula->getY())
+            _direcao = 'S';
     }
 
     if (distancia > 0 && distancia <= _ALCANCE_ARCO){ //Conclui o ataque se ele for válido
         alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - _dano);
         _SP -= _CUSTO_ATAQUE_ARCO;
         return true;
-    } else { //Retorna false se for inválido
+    } else { //Retorna false e reseta direção se for inválido
+        _direcao = direcaoAntiga;
         return false;
     }
 }
