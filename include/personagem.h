@@ -17,6 +17,7 @@ class Personagem {
         //(N - norte, S - sul, L - leste, O - oeste)
         Celula* _celula; // Célula atual do personagem
         int _atordoado; //Quantidade de turnos em que o personagem não poderá agir se for atordoado
+        bool _vivo;
 
     public:
         //Construtor
@@ -53,14 +54,19 @@ class Personagem {
         int getAtordoado();
         void setAtordoado(int atordoado);
 
+        bool getVivo();
+        void setVivo(bool vivo);
+
         bool movimenta(Celula* destino); //Mover personagem no mapa a partir dos MPs
 
-        virtual bool ataque(Celula* alvo) = 0; //Todo personagem ataca, cada um de seu jeito(aplica polimorfismo)
-        virtual bool ataque(Celula* alvo, Celula** mapa) = 0; //Personagens com ataque à distância precisam de um
+        virtual bool ataque(Celula* alvo); //Todo personagem ataca, cada um de seu jeito(aplica polimorfismo)
+        virtual bool ataque(Celula* alvo, Celula** mapa); //Personagens com ataque à distância precisam de um
                                                             //ponteiro para o mapa para verificar obstáculos
 
         virtual void terminaTurno(); //Recupera SPs e MPs do personagem;pode ser sobrescrita pra permitir
                                     //alterações em outros atributos
+
+        void morte(); //Função para determinar o personagem como morto.
 };
 
 #endif

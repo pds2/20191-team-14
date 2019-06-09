@@ -12,6 +12,7 @@ Personagem::Personagem(int totalHP, int totalMP, int totalSP, int dano, char dir
     setDirecao(direcao);
     setCelula(celula);
     setAtordoado(0);
+    setVivo(true);
 }
 
 int Personagem::getHP(){
@@ -70,8 +71,18 @@ void Personagem::setAtordoado(int atordoado){
     _atordoado = atordoado;
 }
 
+bool Personagem::getVivo(){
+    return _vivo;
+}
+
+void Personagem::setVivo(bool vivo){
+    _vivo = vivo;
+}
+
 bool Personagem::movimenta(Celula* destino){
-    //Se a célula destino for a mesma que a célula origem, retorna false
+    char direcaoAntiga = _direcao;
+
+    //Se a célula destino for a mesma que a célula origem ou não estiver vazia, retorna false
     if (destino == _celula || destino->getElemento() != 'v')
         return false;
 
@@ -101,6 +112,7 @@ bool Personagem::movimenta(Celula* destino){
         destino->setElemento('j');
         return true; //Se o movimento é válido, retorna true
     } else {
+        _direcao = direcaoAntiga;
         return false; //Se o movimento é inválido, retorna false
     }
 }
@@ -111,4 +123,8 @@ void Personagem::terminaTurno(){
     
     if (_atordoado > 0)
         _atordoado--;
+}
+
+void Personagem::morte(){
+    _vivo = false;
 }
