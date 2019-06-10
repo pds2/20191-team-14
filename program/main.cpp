@@ -5,6 +5,8 @@
 #include "ladrao.h"
 #include "mago.h"
 
+using namespace std;
+
 #define _LINHAS 10
 #define _COLUNAS 10
 
@@ -112,15 +114,30 @@ void deletaMago(Mago* mago){
 
 int main(){
     Celula** mapa = criaMapa();
+    int opcao=0;
 
     Barbaro* barbaro = criaBarbaro(mapa[6][1]);
     Guerreiro* guerreiro = criaGuerreiro(mapa[7][1]);
     Ladrao* ladrao = criaLadrao(mapa[8][1]);
     Mago* mago = criaMago(mapa[9][1]);
 
+
     //Loop principal do jogo
     while (1){
         
+        //Selecionado o personagem, ou inimigo que ataca,entra no loop
+        cout << "Escolha uma opcao" << endl;
+        while(opcao != 4){ //Opcao = 4 finaliza o turno
+            cin >> opcao;
+            switch (opcao){
+                case 1: // Ataque simples
+                    break;
+                case 2: //Habilidade
+                    break;
+                case 3: //Mover
+                    break;
+            }
+        }
 
         break;
     }
