@@ -112,12 +112,11 @@ void deletaMago(Mago* mago){
 
 int main(){
     Celula** mapa = criaMapa();
-    int numPersonagens;
 
     Barbaro* barbaro = criaBarbaro(mapa[6][1]);
     Guerreiro* guerreiro = criaGuerreiro(mapa[7][1]);
     Ladrao* ladrao = criaLadrao(mapa[8][1]);
-    Mago* mago = criaMago(mapa[10][1]);
+    Mago* mago = criaMago(mapa[9][1]);
 
     //Loop principal do jogo
     while (1){
