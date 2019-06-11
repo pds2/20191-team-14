@@ -11,7 +11,7 @@
 #include <string>
 
 TEST_CASE("01 - teste construtor "){ //testa os construtores das classes
-     Celula celula = Celula('j',1,2); 
+     Celula celula = Celula('j',1,2);
      CHECK_NOTHROW(Celula());
      CHECK_NOTHROW(Celula(1, 2));
      CHECK_NOTHROW(Celula('J', 1, 2));
@@ -26,7 +26,7 @@ TEST_CASE("01 - teste construtor "){ //testa os construtores das classes
 }
 
 TEST_CASE ("02 - teste retorno HP"){
-     Celula celula = Celula('j',1,2); 
+     Celula celula = Celula('j',1,2);
      Personagem personagem = Personagem(100, 3, 6, 30, 'N', &celula);
      personagem.setHP(100);
      CHECK(personagem.getHP()==100);
@@ -53,7 +53,7 @@ TEST_CASE ("02 - teste retorno HP"){
 
 
 TEST_CASE("03- mudança de direção"){
-      Celula celula = Celula('j',1,2); 
+      Celula celula = Celula('j',1,2);
      Personagem personagem = Personagem(100, 3, 6, 30, 'n', &celula);
      personagem.setDirecao('o');
      CHECK(personagem.getDirecao()=='o');
@@ -80,8 +80,8 @@ TEST_CASE("03- mudança de direção"){
 
 
 
-TEST_CASE ("04 - teste validez do ataque ataque proximo"){ 
-     Celula celula = Celula('j',1,2); 
+TEST_CASE ("04 - teste validez do ataque ataque proximo"){
+     Celula celula = Celula('j',1,2);
      Celula alvo = Celula('i',2,2);
      Celula** mapa;
      Barbaro barbaro = Barbaro(100, 3, 6, 30, 'o', &celula);
@@ -100,8 +100,8 @@ TEST_CASE ("04 - teste validez do ataque ataque proximo"){
      CHECK(inimigodois.ataque(&alvo)==true);
 }
 
-TEST_CASE ("05 - teste ataque invalido"){ 
-     Celula celula = Celula('j',1,2); 
+TEST_CASE ("05 - teste ataque invalido"){
+     Celula celula = Celula('j',1,2);
      Celula alvo = Celula('i',2,10);
      Celula** mapa;
      Barbaro barbaro = Barbaro(100, 3, 6, 30, 'o', &celula);
@@ -118,11 +118,11 @@ TEST_CASE ("05 - teste ataque invalido"){
      CHECK(inimigoum.ataque(&alvo)==false);
      InimigoDois inimigodois = InimigoDois(100, 3, 6, 30, 'o', &celula);
      CHECK(inimigodois.ataque(&alvo)==false);
-     
+
 }
 
 TEST_CASE ("06 - teste retorno SP"){
-     Celula celula = Celula('j',1,2); 
+     Celula celula = Celula('j',1,2);
      Personagem personagem = Personagem(100, 3, 6, 30, 'N', &celula);
      personagem.setSP(5);
      CHECK(personagem.getSP()==5);
@@ -145,4 +145,56 @@ TEST_CASE ("06 - teste retorno SP"){
      InimigoDois inimigodois = InimigoDois(100, 3, 6, 30, 'n', &celula);
      inimigodois.setSP(4);
      CHECK(inimigodois.getSP()==4);
+}
+
+TEST_CASE ("07 - teste retorno MP"){
+     Celula celula = Celula('j',1,2);
+     Personagem personagem = Personagem(100, 3, 6, 30, 'N', &celula);
+     personagem.setMP(5);
+     CHECK(personagem.getMP()==5);
+     Guerreiro guerreiro = Guerreiro(100, 3, 6, 30, 'N', &celula);
+     guerreiro.setMP(5);
+     CHECK(guerreiro.getMP()==5);
+     Barbaro barbaro = Barbaro(100, 3, 6, 30, 'N', &celula);
+     barbaro.setMP(5);
+     CHECK(barbaro.getMP()==5);
+     Ladrao ladrao = Ladrao(100, 3, 6, 30, 'N', &celula);
+     CHECK(ladrao.getMP()==6);
+     Mago mago = Mago(100, 3, 6, 30, 'N', &celula);
+     CHECK(mago.getMP()==6);
+     Inimigo inimigo = Inimigo(100, 3, 6, 30, 'N', &celula);
+     inimigo.setMP(5);
+     CHECK(inimigo.getMP()==5);
+     InimigoUm inimigoum = InimigoUm(100, 3, 6, 30, 'n', &celula);
+     inimigoum.setMP(2);
+     CHECK(inimigoum.getMP()==2);
+     InimigoDois inimigodois = InimigoDois(100, 3, 6, 30, 'n', &celula);
+     inimigodois.setMP(4);
+     CHECK(inimigodois.getMP()==4);
+}
+
+TEST_CASE ("08 - teste retorno dano"){
+     Celula celula = Celula('j',1,2);
+     Personagem personagem = Personagem(100, 3, 6, 30, 'N', &celula);
+     personagem.setdano(5);
+     CHECK(personagem.getdano()==5);
+     Guerreiro guerreiro = Guerreiro(100, 3, 6, 30, 'N', &celula);
+     guerreiro.setdano(5);
+     CHECK(guerreiro.getdano()==5);
+     Barbaro barbaro = Barbaro(100, 3, 6, 30, 'N', &celula);
+     barbaro.setdano(5);
+     CHECK(barbaro.getdano()==5);
+     Ladrao ladrao = Ladrao(100, 3, 6, 30, 'N', &celula);
+     CHECK(ladrao.getdano()==6);
+     Mago mago = Mago(100, 3, 6, 30, 'N', &celula);
+     CHECK(mago.getdano()==6);
+     Inimigo inimigo = Inimigo(100, 3, 6, 30, 'N', &celula);
+     inimigo.setdano(5);
+     CHECK(inimigo.getdano()==5);
+     InimigoUm inimigoum = InimigoUm(100, 3, 6, 30, 'n', &celula);
+     inimigoum.setdano(2);
+     CHECK(inimigoum.getdano()==2);
+     InimigoDois inimigodois = InimigoDois(100, 3, 6, 30, 'n', &celula);
+     inimigodois.setdano(4);
+     CHECK(inimigodois.getdano()==4);
 }
