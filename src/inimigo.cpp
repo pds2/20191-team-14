@@ -11,7 +11,7 @@ bool Inimigo::scan(Celula** mapa){
         for (int j = _celula->getY() - _ALCANCE_VISAO; j <= _celula->getY() + _ALCANCE_VISAO; j++){
             if (mapa[i][j].getPersonagem() != nullptr){
                 personagemEncontrado = true;
-                this->movimenta();
+                this->movimenta(&mapa[i][j]);
             }
         }
 

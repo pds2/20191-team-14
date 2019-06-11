@@ -1,7 +1,10 @@
 #ifndef GAME_INIMIGO_DOIS_H
 #define GAME_INIMIGO_DOIS_H
 
-#include "personagem.h"
+#include "inimigo.h"
+
+#define _ALCANCE 3
+#define _CUSTO_ATAQUE_BASICO 4
 
 class InimigoDois : public Personagem {
     public:

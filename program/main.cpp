@@ -4,6 +4,8 @@
 #include "guerreiro.h"
 #include "ladrao.h"
 #include "mago.h"
+#include "inimigoum.h"
+#include "inimigodois.h"
 
 using namespace std;
 
@@ -25,6 +27,12 @@ using namespace std;
 
 #define _MAGO_HP 80
 #define _MAGO_DANO 20
+
+#define _INIMIGO1_HP 85
+#define _INIMIGO1_DANO 15
+
+#define _INIMIGO2_HP 70
+#define _INIMIGO2_DANO 17
 
 #define _MAPA_ELEMENTO_VAZIO 'v'
 #define _MAPA_ELEMENTO_BARBARO 'b'
@@ -162,6 +170,37 @@ void deletaMago(Mago* mago){
     delete mago;
 }
 
+
+//Cria Inimigo 1
+InimigoUm* criaInimigoUm(Celula celula){
+    Celula* celulaPtr = &celula;
+    InimigoUm* inimigo = new InimigoUm(_INIMIGO1_HP, _MP, _SP, _INIMIGO1_DANO, _DIRECAO_PADRAO, celulaPtr);
+
+    celulaPtr = nullptr;
+
+    return inimigo;
+}
+
+//Desaloca Inimigo 1
+void deletaInimigoUm(InimigoUm* inimigo){
+    delete inimigo;
+}
+
+//Cria Inimigo 2
+InimigoDois* criaInimigoDois(Celula celula){
+    Celula* celulaPtr = &celula;
+    InimigoDois* inimigo = new InimigoDois(_INIMIGO1_HP, _MP, _SP, _INIMIGO1_DANO, _DIRECAO_PADRAO, celulaPtr);
+
+    celulaPtr = nullptr;
+
+    return inimigo;
+}
+
+//Desaloca Inimigo 2
+void deletaInimigoUm(InimigoUm* inimigo){
+    delete inimigo;
+}
+
 //Escreve informacoes dos personagens na tela
 void escreveInformacoes(int turnoAtual, Barbaro* barbaro, Ladrao* ladrao, Guerreiro* guerreiro, Mago* mago){
     cout << "Barbaro - HP: " << barbaro->getHP() << " SP: " << barbaro->getSP() << " MP: " << barbaro->getMP();
@@ -208,10 +247,10 @@ int main(){
     int opcao = 0, turnoAtual = _TURNO_BARBARO;
     bool todosMortos = false, todosSalvos = false;
 
-    Barbaro* barbaro = criaBarbaro(mapa[6][1]);
-    Guerreiro* guerreiro = criaGuerreiro(mapa[7][1]);
-    Ladrao* ladrao = criaLadrao(mapa[8][1]);
-    Mago* mago = criaMago(mapa[9][1]);
+    Barbaro* barbaro = criaBarbaro(mapa[4][1]);
+    Guerreiro* guerreiro = criaGuerreiro(mapa[5][1]);
+    Ladrao* ladrao = criaLadrao(mapa[6][1]);
+    Mago* mago = criaMago(mapa[7][1]);
 
     //Loop principal do jogo
     while (1){
