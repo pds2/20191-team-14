@@ -32,6 +32,8 @@
 #define _INIMIGO2_HP 70
 #define _INIMIGO2_DANO 17
 
+#define _PEDRA_HP 1
+
 #define _TURNO_BARBARO 1
 #define _TURNO_LADRAO 2
 #define _TURNO_GUERREIRO 3
@@ -74,6 +76,12 @@ InimigoDois* criaInimigoDois(Celula celula);
 
 //Desaloca Inimigo 2
 void deletaInimigoDois(InimigoDois* inimigo);
+
+//Cria Pedra
+Pedra* criaPedra(Celula celula);
+
+//Desaloca Desaloca
+void deletaPedra(Pedra* pedra);
 
 //Escreve informacoes dos personagens na tela
 void escreveInformacoes(int turnoAtual, Barbaro* barbaro, Ladrao* ladrao, Guerreiro* guerreiro, Mago* mago);

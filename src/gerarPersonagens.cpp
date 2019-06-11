@@ -91,6 +91,21 @@ void deletaInimigoDois(InimigoDois* inimigo){
     delete inimigo;
 }
 
+//Cria pedra
+Pedra* criaPedra(Celula celula){
+    Celula* celulaPtr = &celula;
+    Pedra* pedra = new InimigoDois(_PEDRA_HP, 0, 0,0, _DIRECAO_PADRAO, celulaPtr);
+
+    celulaPtr = nullptr;
+
+    return pedra;
+}
+
+//Desaloca Pedra
+void deletaPedra(Pedra* pedra){
+    delete pedra;
+}
+
 //Escreve informacoes dos personagens na tela
 void escreveInformacoes(int turnoAtual, Barbaro* barbaro, Ladrao* ladrao, Guerreiro* guerreiro, Mago* mago){
     cout << "Barbaro - HP: " << barbaro->getHP() << " SP: " << barbaro->getSP() << " MP: " << barbaro->getMP();
