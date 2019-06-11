@@ -1,5 +1,7 @@
 #include "gerarMapa.h"
 
+using namespace std;
+
 //Função para criar o mapa e retornar ponteiro para tal
 Celula** criaMapa(){
     Celula** mapa = new Celula*[_LINHAS];
