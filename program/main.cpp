@@ -37,6 +37,12 @@ using namespace std;
 #define _MAPA_ELEMENTO_SAIDA 's'
 #define _MAPA_ELEMENTO_INVULNERAVEL 'i'
 
+#define _TURNO_BARBARO 1
+#define _TURNO_LADRAO 2
+#define _TURNO_GUERREIRO 3
+#define _TURNO_MAGO 4
+#define _TURNO_INIMIGOS 5
+
 //Função para criar o mapa e retornar ponteiro para tal
 Celula** criaMapa(){
     Celula** mapa = new Celula*[_LINHAS];
@@ -86,9 +92,9 @@ void deletaMapa(Celula** mapa){
 void desenhaMapa(Celula** mapa){
     for (int j = _COLUNAS - 1; j >= 0; j--){
         for (int i = 0; i < _LINHAS; i++){
-            std::cout << mapa[i][j].getElemento();
+            cout << mapa[i][j].getElemento();
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }
 
@@ -152,35 +158,155 @@ void deletaMago(Mago* mago){
     delete mago;
 }
 
+//Escreve informacoes dos personagens na tela
+void escreveInformacoes(int turnoAtual, Barbaro* barbaro, Ladrao* ladrao, Guerreiro* guerreiro, Mago* mago){
+    cout << "Barbaro - HP: " << barbaro->getHP() << " SP: " << barbaro->getSP() << " MP: " << barbaro->getMP();
+    if (turnoAtual == _TURNO_BARBARO)
+        cout << " TURNO ATUAL";
+    if (!barbaro->getVivo())
+        cout << " MORTO";
+    cout << endl;
+
+    cout << "Ladrao - HP: " << ladrao->getHP() << " SP: " << ladrao->getSP() << " MP: " << ladrao->getMP();
+    if (turnoAtual == _TURNO_LADRAO)
+        cout << " TURNO ATUAL";
+    if (!ladrao->getVivo())
+        cout << " MORTO";
+    cout << endl;
+
+    cout << "Guerreiro - HP: " << guerreiro->getHP() << " SP: " << guerreiro->getSP() << " MP: " << guerreiro->getMP();
+    if (turnoAtual == _TURNO_GUERREIRO)
+        cout << " TURNO ATUAL";
+    if (!guerreiro->getVivo())
+        cout << " MORTO";
+    cout << endl;
+
+    cout << "Mago - HP: " << mago->getHP() << " SP: " << mago->getSP() << " MP: " << mago->getMP();
+    if (turnoAtual == _TURNO_MAGO)
+        cout << " TURNO ATUAL";
+    if (!mago->getVivo())
+        cout << " MORTO";
+    cout << endl;
+}
+
+//Fim de jogo
+void gameOver(){
+    cout << "Fim de jogo! Todos os personagens estão mortos..." << endl;
+}
+
 int main(){
     Celula** mapa = criaMapa();
-    int opcao=0;
+    int opcao = 0, turnoAtual = _TURNO_BARBARO;
+    bool todosMortos = false;
 
     Barbaro* barbaro = criaBarbaro(mapa[6][1]);
     Guerreiro* guerreiro = criaGuerreiro(mapa[7][1]);
     Ladrao* ladrao = criaLadrao(mapa[8][1]);
     Mago* mago = criaMago(mapa[9][1]);
 
-
     //Loop principal do jogo
     while (1){
-        desenhaMapa(mapa);
+        todosMortos = !barbaro->getVivo() && !guerreiro->getVivo() && !ladrao->getVivo() && !mago->getVivo();
+
+        if (todosMortos){
+            gameOver();
+            break;
+        }
+
+        if (turnoAtual == _TURNO_INIMIGOS)
+            turnoAtual = _TURNO_BARBARO;
+        else
+            turnoAtual++;
+
+        //Se personagem atual estiver morto, pula o turno dele
+        if (turnoAtual == _TURNO_BARBARO && !barbaro->getVivo()
+            || turnoAtual == _TURNO_LADRAO && !ladrao->getVivo()
+            || turnoAtual == _TURNO_GUERREIRO && !guerreiro->getVivo()
+            || turnoAtual == _TURNO_MAGO && !mago->getVivo())
+            turnoAtual++;
         
-        //Selecionado o personagem, ou inimigo que ataca,entra no loop
-        cout << "Escolha uma opcao" << endl;
-        while(opcao != 4){ //Opcao = 4 finaliza o turno
-            cin >> opcao;
-            switch (opcao){
-                case 1: // Ataque simples
-                    break;
-                case 2: //Habilidade
-                    break;
-                case 3: //Mover
-                    break;
+        if (turnoAtual != _TURNO_INIMIGOS){
+            //Selecionado o personagem, entra no loop
+            while(opcao != 4){ //Opcao = 4 finaliza o turno
+                cout << endl;
+                desenhaMapa(mapa);
+                escreveInformacoes(turnoAtual, barbaro, ladrao, guerreiro, mago);
+                cout << endl << "Escolha uma opcao:" << endl;
+                cout << "1 - Ataque Basico" << endl << "2 - Habilidade" << endl << "3 - Mover" << endl << "4 - Encerrar Turno";
+
+                cin >> opcao;
+                switch (opcao){
+                    case 1: // Ataque básico
+                        switch (turnoAtual){
+                            case _TURNO_BARBARO:
+                                break;
+
+                            case _TURNO_LADRAO:
+                                break;
+
+                            case _TURNO_GUERREIRO:
+                                break;
+                            
+                            case _TURNO_MAGO:
+                                break;
+                        }
+                        break;
+                    case 2: //Habilidade
+                        switch (turnoAtual){
+                            case _TURNO_BARBARO:
+                                break;
+
+                            case _TURNO_LADRAO:
+                                break;
+
+                            case _TURNO_GUERREIRO:
+                                break;
+                            
+                            case _TURNO_MAGO:
+                                break;
+                        }
+                        break;
+                    case 3: //Mover
+                        switch (turnoAtual){
+                            case _TURNO_BARBARO:
+
+                                break;
+
+                            case _TURNO_LADRAO:
+                                break;
+
+                            case _TURNO_GUERREIRO:
+                                break;
+                            
+                            case _TURNO_MAGO:
+                                break;
+                        }
+                        break;
+                    case 4: //Encerra turno
+                        cout << "Encerrando turno..." << endl;
+                        switch (turnoAtual){
+                            case _TURNO_BARBARO:
+                                barbaro->terminaTurno();
+                                break;
+
+                            case _TURNO_LADRAO:
+                                ladrao->terminaTurno();
+                                break;
+
+                            case _TURNO_GUERREIRO:
+                                guerreiro->terminaTurno();
+                                break;
+                            
+                            case _TURNO_MAGO:
+                                mago->terminaTurno();
+                                break;
+                        }
+                        break;
+                }
             }
         }
 
-        break;
+
     }
 
     //Desaloca tudo
