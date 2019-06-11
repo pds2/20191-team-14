@@ -17,7 +17,8 @@ class Personagem {
         //(N - norte, S - sul, L - leste, O - oeste)
         Celula* _celula; // Célula atual do personagem
         int _atordoado; //Quantidade de turnos em que o personagem não poderá agir se for atordoado
-        bool _vivo;
+        bool _vivo; //Determina se o personagem está vivo
+        bool _salvo; //Determina se o personagem conseguiu fugir
 
     public:
         //Construtor
@@ -56,6 +57,9 @@ class Personagem {
 
         bool getVivo();
         void setVivo(bool vivo);
+
+        bool getSalvo();
+        void setSalvo(bool salvo);
 
         bool movimenta(Celula* destino); //Mover personagem no mapa a partir dos MPs
 

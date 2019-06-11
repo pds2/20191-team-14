@@ -13,6 +13,7 @@ Personagem::Personagem(int totalHP, int totalMP, int totalSP, int dano, char dir
     setCelula(celula);
     setAtordoado(0);
     setVivo(true);
+    setSalvo(false);
 }
 
 int Personagem::getHP(){
@@ -79,11 +80,19 @@ void Personagem::setVivo(bool vivo){
     _vivo = vivo;
 }
 
+bool Personagem::getSalvo(){
+    return _salvo;
+}
+
+void Personagem::setSalvo(bool salvo){
+    _salvo = salvo;
+}
+
 bool Personagem::movimenta(Celula* destino){
     char direcaoAntiga = _direcao;
 
     //Se a célula destino for a mesma que a célula origem ou não estiver vazia, retorna false
-    if (destino == _celula || destino->getElemento() != 'v')
+    if (destino == _celula || destino->getElemento() != 'v' && destino->getElemento() != 's')
         return false;
 
     int movimentosX, movimentosY;
@@ -109,6 +118,8 @@ bool Personagem::movimenta(Celula* destino){
     //Verifica se o personagem possui MPs suficientes
     if (movimentosX + movimentosY <= _MP) {
         _MP -= movimentosX + movimentosY;
+        if (destino->getElemento() == 's')
+            _salvo = true;
         return true; //Se o movimento é válido, retorna true
     } else {
         _direcao = direcaoAntiga;

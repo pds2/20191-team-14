@@ -198,10 +198,15 @@ void gameOver(){
     cout << "Fim de jogo! Todos os personagens estão mortos..." << endl;
 }
 
+//Jogo terminado
+void vitoria(){
+    cout << "Todos os personagens conseguiram sair vivos! Você venceu!" << endl;
+}
+
 int main(){
     Celula** mapa = criaMapa();
     int opcao = 0, turnoAtual = _TURNO_BARBARO;
-    bool todosMortos = false;
+    bool todosMortos = false, todosSalvos = false;
 
     Barbaro* barbaro = criaBarbaro(mapa[6][1]);
     Guerreiro* guerreiro = criaGuerreiro(mapa[7][1]);
@@ -211,9 +216,15 @@ int main(){
     //Loop principal do jogo
     while (1){
         todosMortos = !barbaro->getVivo() && !guerreiro->getVivo() && !ladrao->getVivo() && !mago->getVivo();
+        todosSalvos = barbaro->getSalvo() && guerreiro->getSalvo() && ladrao->getSalvo() && mago->getSalvo();
 
         if (todosMortos){
             gameOver();
+            break;
+        }
+
+        if (todosSalvos){
+            vitoria();
             break;
         }
 
@@ -229,6 +240,7 @@ int main(){
             || turnoAtual == _TURNO_MAGO && !mago->getVivo())
             turnoAtual++;
         
+        //Se for turno de algum dos personagens, lista escolhas
         if (turnoAtual != _TURNO_INIMIGOS){
             //Selecionado o personagem, entra no loop
             while(opcao != 4){ //Opcao = 4 finaliza o turno
@@ -285,7 +297,8 @@ int main(){
                                     barbaro->getCelula()->setElemento('b');
                                     cout << endl << "Movimento invalido!" << endl;
                                 } else {
-                                    destino->setElemento('b');
+                                    if (destino->getElemento() != 's')
+                                        destino->setElemento('b');
                                 }
                                 break;
 
@@ -295,7 +308,8 @@ int main(){
                                     ladrao->getCelula()->setElemento('l');
                                     cout << endl << "Movimento invalido!" << endl;
                                 } else {
-                                    destino->setElemento('l');
+                                    if (destino->getElemento() != 's')
+                                        destino->setElemento('l');
                                 }
                                 break;
 
@@ -305,7 +319,8 @@ int main(){
                                     guerreiro->getCelula()->setElemento('g');
                                     cout << endl << "Movimento invalido!" << endl;
                                 } else {
-                                    destino->setElemento('g');
+                                    if (destino->getElemento() != 's')
+                                        destino->setElemento('g');
                                 }
                                 break;
                             
@@ -315,7 +330,8 @@ int main(){
                                     mago->getCelula()->setElemento('m');
                                     cout << endl << "Movimento invalido!" << endl;
                                 } else {
-                                    destino->setElemento('m');
+                                    if (destino->getElemento() != 's')
+                                        destino->setElemento('m');
                                 }
                                 break;
                         }
@@ -342,9 +358,9 @@ int main(){
                         break;
                 }
             }
+        } else { //Turnos dos inimigos
+            //TODO: Movimentações dos inimigos
         }
-
-
     }
 
     //Desaloca tudo
