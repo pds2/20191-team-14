@@ -24,6 +24,16 @@
 #define _MAGO_HP 80
 #define _MAGO_DANO 20
 
+#define _MAPA_ELEMENTO_VAZIO 'v'
+#define _MAPA_ELEMENTO_BARBARO 'b'
+#define _MAPA_ELEMENTO_GUERREIRO 'g'
+#define _MAPA_ELEMENTO_LADRAO 'l'
+#define _MAPA_ELEMENTO_MAGO 'm'
+#define _MAPA_ELEMENTO_INIMIGO_UM '1'
+#define _MAPA_ELEMENTO_INIMIGO_DOIS '2'
+#define _MAPA_ELEMENTO_PEDRA 'p'
+#define _MAPA_ELEMENTO_SAIDA 's'
+#define _MAPA_ELEMENTO_INVULNERAVEL 'i'
 
 //Função para criar o mapa e retornar ponteiro para tal
 Celula** criaMapa(){
@@ -33,9 +43,29 @@ Celula** criaMapa(){
         mapa[i] = new Celula[_COLUNAS];
     }
 
-    for (int i = 0; i < 100; i++){
-        for (int j = 0; j < 100; j++){
-            mapa[i][j] = Celula(i, j); //TODO: usar construtor com elemento para desenhar o mapa
+    for (int i = 0; i < _LINHAS; i++){
+        for (int j = 0; j < _COLUNAS; j++){
+            if (i == 6 && j == 0){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_BARBARO, i, j);
+            } else if (i == 7 && j == 0){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_GUERREIRO, i, j);
+            } else if (i == 8 && j == 0){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_LADRAO, i, j);
+            } else if (i == 9 && j == 0){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_MAGO, i, j);
+            } else if (i == 4 && j == 0 || i == 5 && j == 6 || i == 7 && j == 7){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_INIMIGO_UM, i, j);
+            } else if (i == 2 && j == 2 || i == 0 && j == 8){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_INIMIGO_DOIS, i, j);
+            } else if (i == 3 && j == 3 || i == 1 && j == 6){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_PEDRA, i, j);
+            } else if(i == 0 && j == 9){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_SAIDA, i, j);
+            } else if(i == 5 && j <= 5 || i >= 8 && j == 3 || i >= 1 && i <= 3 && j == 5 || i == 3 && j >= 6 || i == 1 && j == 7){
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_INVULNERAVEL, i, j);
+            } else {
+                mapa[i][j] = Celula(_MAPA_ELEMENTO_VAZIO, i, j); 
+            }
         }
     }
 
@@ -48,6 +78,16 @@ void deletaMapa(Celula** mapa){
         delete [] mapa[i];
 
     delete [] mapa;
+}
+
+//Função para desenhar exibição do mapa
+void desenhaMapa(Celula** mapa){
+    for (int j = _COLUNAS - 1; j >= 0; j--){
+        for (int i = 0; i < _LINHAS; i++){
+            std::cout << mapa[i][j].getElemento();
+        }
+        std::cout << std::endl;
+    }
 }
 
 //Cria personagem do bárbaro
@@ -121,7 +161,7 @@ int main(){
 
     //Loop principal do jogo
     while (1){
-        
+        desenhaMapa(mapa);
 
         break;
     }
