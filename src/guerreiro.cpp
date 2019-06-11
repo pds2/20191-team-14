@@ -57,11 +57,9 @@ bool Guerreiro::ataque(Celula* alvo){
 
 bool Guerreiro::escudo(){
     if(_SP < _CUSTO_ESCUDO) //Se não tiver SP o bastante
-        throw std::sem_SP("SP insulficiente para skill");
         return false;
 
     if(_escudo > 0) //Se escudo já tiver sido usado, não acumular
-        throw std::escudoAtivo("Escudo ja esta ativo, nao pode repeti-lo");
         return false;
 
     _SP -= _CUSTO_ESCUDO;

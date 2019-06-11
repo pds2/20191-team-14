@@ -55,10 +55,8 @@ bool Barbaro::ataque(Celula* alvo){
 }
 
 bool Barbaro::berserk(){
-    if (_SP < _CUSTO_BERSERK){ //Se o bárbaro não possui SPs o suficiente, retorna falso
-        throw std::sem_SP("SP insulficiente para skill");
+    if (_SP < _CUSTO_BERSERK) //Se o bárbaro não possui SPs o suficiente, retorna falso
         return false;
-    }
 
     _SP -= _CUSTO_BERSERK;
     _danoExtra += _dano + (_dano / 2);
