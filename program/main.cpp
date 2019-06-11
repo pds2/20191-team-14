@@ -422,44 +422,47 @@ int main(){
 
                         switch (turnoAtual){
                             case _TURNO_BARBARO:
-                                barbaro->getCelula()->setElemento('v');
                                 if (!barbaro->movimenta(destino)){
-                                    barbaro->getCelula()->setElemento('b');
                                     cout << endl << "Movimento invalido!" << endl;
                                 } else {
+                                    barbaro->getCelula()->setElemento('v');
+
                                     if (destino->getElemento() != 's')
                                         destino->setElemento('b');
                                 }
                                 break;
 
                             case _TURNO_LADRAO:
-                                ladrao->getCelula()->setElemento('v');
                                 if (!ladrao->movimenta(destino)){
                                     ladrao->getCelula()->setElemento('l');
                                     cout << endl << "Movimento invalido!" << endl;
                                 } else {
+                                    ladrao->getCelula()->setElemento('v');
+
                                     if (destino->getElemento() != 's')
                                         destino->setElemento('l');
                                 }
                                 break;
 
                             case _TURNO_GUERREIRO:
-                                guerreiro->getCelula()->setElemento('v');
                                 if (!guerreiro->movimenta(destino)){
                                     guerreiro->getCelula()->setElemento('g');
                                     cout << endl << "Movimento invalido!" << endl;
                                 } else {
+                                    guerreiro->getCelula()->setElemento('v');
+
                                     if (destino->getElemento() != 's')
                                         destino->setElemento('g');
                                 }
                                 break;
                             
                             case _TURNO_MAGO:
-                                mago->getCelula()->setElemento('v');
                                 if (!mago->movimenta(destino)){
                                     mago->getCelula()->setElemento('m');
                                     cout << endl << "Movimento invalido!" << endl;
                                 } else {
+                                    mago->getCelula()->setElemento('v');
+
                                     if (destino->getElemento() != 's')
                                         destino->setElemento('m');
                                 }
@@ -493,6 +496,8 @@ int main(){
         } else { //Turnos dos inimigos
             alvoInimigo = inimigoA->scan(mapa);
             if (alvoInimigo != inimigoA->getCelula()){
+                inimigoA->getCelula()->setElemento('1');
+
                 if (inimigoA->ataque(alvoInimigo)){
                     if (alvoInimigo->getPersonagem()->getHP() <= 0){
                         alvoInimigo->getPersonagem()->morte();
@@ -504,6 +509,8 @@ int main(){
 
             alvoInimigo = inimigoB->scan(mapa);
             if (alvoInimigo != inimigoB->getCelula()){
+                inimigoB->getCelula()->setElemento('1');
+
                 if (inimigoB->ataque(alvoInimigo)){
                     if (alvoInimigo->getPersonagem()->getHP() <= 0){
                         alvoInimigo->getPersonagem()->morte();
@@ -515,6 +522,8 @@ int main(){
 
             alvoInimigo = inimigoC->scan(mapa);
             if (alvoInimigo != inimigoC->getCelula()){
+                inimigoC->getCelula()->setElemento('1');
+
                 if (inimigoC->ataque(alvoInimigo)){
                     if (alvoInimigo->getPersonagem()->getHP() <= 0){
                         alvoInimigo->getPersonagem()->morte();
@@ -526,6 +535,8 @@ int main(){
 
             alvoInimigo = inimigoD->scan(mapa);
             if (alvoInimigo != inimigoD->getCelula()){
+                inimigoD->getCelula()->setElemento('2');
+
                 if (inimigoD->ataque(alvoInimigo)){
                     if (alvoInimigo->getPersonagem()->getHP() <= 0){
                         alvoInimigo->getPersonagem()->morte();
@@ -537,6 +548,8 @@ int main(){
 
             alvoInimigo = inimigoE->scan(mapa);
             if (alvoInimigo != inimigoE->getCelula()){
+                inimigoE->getCelula()->setElemento('2');
+
                 if (inimigoE->ataque(alvoInimigo)){
                     if (alvoInimigo->getPersonagem()->getHP() <= 0){
                         alvoInimigo->getPersonagem()->morte();
@@ -552,10 +565,17 @@ int main(){
 
     //Desaloca tudo
     deletaMapa(mapa);
+
     deletaBarbaro(barbaro);
     deletaGuerreiro(guerreiro);
     deletaLadrao(ladrao);
     deletaMago(mago);
+
+    deletaInimigoUm(inimigoA);
+    deletaInimigoUm(inimigoB);
+    deletaInimigoUm(inimigoC);
+    deletaInimigoDois(inimigoD);
+    deletaInimigoDois(inimigoE);
 
     return 0;
 }

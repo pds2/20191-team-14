@@ -14,6 +14,8 @@ Celula* Inimigo::scan(Celula** mapa){
                 personagemX = i;
                 personagemY = j;
                 
+                _celula->setElemento('v');
+
                 if (i > _celula->getX()){
                     i -= 1;
                 } else {
@@ -36,10 +38,8 @@ Celula* Inimigo::scan(Celula** mapa){
         i++;
     }
 
-    if (personagemEncontrado){ //Se algum personagem foi encontrado e a movimentação realizada, retorna true
-        return &mapa[personagemX][personagemY];
-    }
-    
-    //Se não atacou ninguém, retorna a célula atual
-    return &mapa[i][j];
+    if (personagemEncontrado) 
+        return &mapa[personagemX][personagemY]; //Se algum personagem foi encontrado e a movimentação realizada, retorna a célula do alvo
+    else
+        return &mapa[i][j]; //Se não se moveu, retorna a célula atual
 }
