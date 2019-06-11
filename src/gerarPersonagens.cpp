@@ -1,5 +1,7 @@
 #include "gerarPersonagens.h"
 
+using namespace std;
+
 //Cria personagem do bárbaro
 Barbaro* criaBarbaro(Celula celula){
     Celula* celulaPtr = &celula;
