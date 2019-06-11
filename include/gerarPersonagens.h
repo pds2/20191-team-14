@@ -1,6 +1,7 @@
 #ifndef GAME_GERAR_PERSONAGENS_H
 #define GAME_GERAR_PERSONAGENS_H
 
+#include <iostream>
 #include "celula.h"
 #include "barbaro.h"
 #include "guerreiro.h"
@@ -8,7 +9,7 @@
 #include "mago.h"
 #include "inimigoum.h"
 #include "inimigodois.h"
-#include <iostream>
+#include "pedra.h"
 
 #define _SP 6
 #define _MP 3
