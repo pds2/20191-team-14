@@ -197,7 +197,7 @@ InimigoDois* criaInimigoDois(Celula celula){
 }
 
 //Desaloca Inimigo 2
-void deletaInimigoUm(InimigoUm* inimigo){
+void deletaInimigoDois(InimigoDois* inimigo){
     delete inimigo;
 }
 
