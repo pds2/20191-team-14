@@ -244,13 +244,25 @@ void vitoria(){
 
 int main(){
     Celula** mapa = criaMapa();
+    Celula *destino;
     int opcao = 0, turnoAtual = _TURNO_BARBARO;
+    int x, y;
     bool todosMortos = false, todosSalvos = false;
 
-    Barbaro* barbaro = criaBarbaro(mapa[4][1]);
-    Guerreiro* guerreiro = criaGuerreiro(mapa[5][1]);
-    Ladrao* ladrao = criaLadrao(mapa[6][1]);
-    Mago* mago = criaMago(mapa[7][1]);
+    Barbaro* barbaro = criaBarbaro(mapa[4][0]);
+    Guerreiro* guerreiro = criaGuerreiro(mapa[5][0]);
+    Ladrao* ladrao = criaLadrao(mapa[6][0]);
+    Mago* mago = criaMago(mapa[7][0]);
+
+    InimigoUm* inimigoA = criaInimigoUm(mapa[4][1]);
+    InimigoUm* inimigoB = criaInimigoUm(mapa[5][3]);
+    InimigoUm* inimigoC = criaInimigoUm(mapa[6][5]);
+    InimigoUm* inimigoD = criaInimigoUm(mapa[7][7]);
+    InimigoDois* inimigoE = criaInimigoDois(mapa[4][2]);
+    InimigoDois* inimigoF = criaInimigoDois(mapa[5][4]);
+    InimigoDois* inimigoG = criaInimigoDois(mapa[6][6]);
+    InimigoDois* inimigoH = criaInimigoDois(mapa[7][8]);
+    
 
     //Loop principal do jogo
     while (1){
@@ -292,42 +304,73 @@ int main(){
                 cin >> opcao;
                 switch (opcao){
                     case 1: // Ataque básico
-                        switch (turnoAtual){
-                            case _TURNO_BARBARO:
-                                break;
-
-                            case _TURNO_LADRAO:
-                                break;
-
-                            case _TURNO_GUERREIRO:
-                                break;
-                            
-                            case _TURNO_MAGO:
-                                break;
-                        }
-                        break;
-                    case 2: //Habilidade
-                        switch (turnoAtual){
-                            case _TURNO_BARBARO:
-                                break;
-
-                            case _TURNO_LADRAO:
-                                break;
-
-                            case _TURNO_GUERREIRO:
-                                break;
-                            
-                            case _TURNO_MAGO:
-                                break;
-                        }
-                        break;
-                    case 3: //Mover
-                        int x, y;
-
                         cout << "Insira as coordenadas desejadas (uma por vez): ";
                         cin >> x >> y;
 
-                        Celula *destino = &mapa[x][y];
+                        *destino = &mapa[x][y];
+
+                        switch (turnoAtual){
+                            case _TURNO_BARBARO:
+                                if(!barbaro->ataque(destino))
+                                    cout << endl << "Nao pode atacar essa posicao!" << endl;
+                                break;
+
+                            case _TURNO_LADRAO:
+                                if(!ladrao->ataque(destino))
+                                    cout << endl << "Nao pode atacar essa posicao!" << endl;
+                                break;
+
+                            case _TURNO_GUERREIRO:
+                                if(!guerreiro->ataque(destino))
+                                    cout << endl << "Nao pode atacar essa posicao!" << endl;
+                                break;
+                            
+                            case _TURNO_MAGO:
+                                if(!mago->ataque(destino))
+                                    cout << endl << "Nao pode atacar essa posicao!" << endl;
+                                break;
+                        }
+                        break;
+
+                    case 2: //Habilidade
+                        switch (turnoAtual){
+                            case _TURNO_BARBARO:
+                                if(!barbaro->berserk(destino))
+                                    cout << endl << "Nao pode usar essa habilidade!" << endl;
+                                break;
+
+                            case _TURNO_LADRAO:
+                                cout << "Insira as coordenadas desejadas (uma por vez): ";
+                                cin >> x >> y;
+
+                                *destino = &mapa[x][y];
+
+                                if(!ladrao->arco(destino,mapa))
+                                    cout << endl << "Nao pode atacar essa posicao!" << endl;
+                                break;
+
+                            case _TURNO_GUERREIRO:
+                                if(!guerreiro->escudo())
+                                    cout << endl << "Nao usar essa habilidade!" << endl;
+                                break;
+                            
+                            case _TURNO_MAGO:
+                                cout << "Insira as coordenadas desejadas (uma por vez): ";
+                                cin >> x >> y;
+
+                                *destino = &mapa[x][y];
+
+                                if(!mago->stun(destino,mapa))
+                                    cout << endl << "Nao pode atacar essa posicao!" << endl;
+                                break;
+                        }
+                        break;
+
+                    case 3: //Mover
+                        cout << "Insira as coordenadas desejadas (uma por vez): ";
+                        cin >> x >> y;
+
+                        *destino = &mapa[x][y];
 
                         switch (turnoAtual){
                             case _TURNO_BARBARO:
