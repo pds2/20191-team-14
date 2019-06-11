@@ -91,11 +91,15 @@ void deletaMapa(Celula** mapa){
 //Função para desenhar exibição do mapa
 void desenhaMapa(Celula** mapa){
     for (int j = _COLUNAS - 1; j >= 0; j--){
+        cout << j << "   ";
         for (int i = 0; i < _LINHAS; i++){
             cout << mapa[i][j].getElemento();
         }
         cout << endl;
     }
+    cout << "    ";
+    for (int i = 0; i < _LINHAS; i++)
+        cout << i << endl;
 }
 
 //Cria personagem do bárbaro
@@ -267,18 +271,52 @@ int main(){
                         }
                         break;
                     case 3: //Mover
+                        int x, y;
+
+                        cout << "Insira as coordenadas desejadas (uma por vez): ";
+                        cin >> x >> y;
+
+                        Celula *destino = &mapa[x][y];
+
                         switch (turnoAtual){
                             case _TURNO_BARBARO:
-
+                                barbaro->getCelula()->setElemento('v');
+                                if (!barbaro->movimenta(destino)){
+                                    barbaro->getCelula()->setElemento('b');
+                                    cout << endl << "Movimento invalido!" << endl;
+                                } else {
+                                    destino->setElemento('b');
+                                }
                                 break;
 
                             case _TURNO_LADRAO:
+                                ladrao->getCelula()->setElemento('v');
+                                if (!ladrao->movimenta(destino)){
+                                    ladrao->getCelula()->setElemento('l');
+                                    cout << endl << "Movimento invalido!" << endl;
+                                } else {
+                                    destino->setElemento('l');
+                                }
                                 break;
 
                             case _TURNO_GUERREIRO:
+                                guerreiro->getCelula()->setElemento('v');
+                                if (!guerreiro->movimenta(destino)){
+                                    guerreiro->getCelula()->setElemento('g');
+                                    cout << endl << "Movimento invalido!" << endl;
+                                } else {
+                                    destino->setElemento('g');
+                                }
                                 break;
                             
                             case _TURNO_MAGO:
+                                mago->getCelula()->setElemento('v');
+                                if (!mago->movimenta(destino)){
+                                    mago->getCelula()->setElemento('m');
+                                    cout << endl << "Movimento invalido!" << endl;
+                                } else {
+                                    destino->setElemento('m');
+                                }
                                 break;
                         }
                         break;
