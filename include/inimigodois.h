@@ -3,7 +3,7 @@
 
 #include "inimigo.h"
 
-#define _ALCANCE 3
+#define _ALCANCE 2
 #define _CUSTO_ATAQUE_BASICO 4
 
 class InimigoDois : public Inimigo {
