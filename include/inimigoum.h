@@ -1,13 +1,16 @@
 #ifndef GAME_INIMIGO_UM_H
 #define GAME_INIMIGO_UM_H
 
-#include "personagem.h"
+#include "inimigo.h"
 
-class InimigoUm : public Personagem {
+#define _ALCANCE 1
+#define _CUSTO_ATAQUE_BASICO 3
+
+class InimigoUm : public Inimigo {
     public:
         InimigoUm(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula);
 
-        bool ataque(Celula* celula) override;
+        bool ataque(Celula* alvo) override;
 };
 
 #endif
