@@ -9,10 +9,9 @@ class Inimigo : public Personagem {
     public:
         Inimigo(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula);
 
-        /*scanMapa recebe uma célula inicial de referencial na ponta do mapa onde os inimigos começam
-        ele então varre todo mapa procurando por um inimigo e compara sua posição com a do inimigo para
-        saber se é o mais próximo*/
-        bool scan(Celula** mapa);
+        /*scan lê uma área ao redor do inimigo
+        Se encontrar um personagem, tenta andar o mais próximo possível em direção a ele e atacá-lo*/
+        Celula* scan(Celula** mapa);
 };
 
 #endif

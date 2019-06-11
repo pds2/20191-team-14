@@ -248,7 +248,9 @@ void vitoria(){
 
 int main(){
     Celula** mapa = criaMapa();
-    Celula *destino;
+    Celula* destino = nullptr; //Ponteiro para o destino de funções de personagens
+    Celula* alvoInimigo = nullptr; //Ponteiro para o alvo de ataques de inimigos
+
     int opcao = 0, turnoAtual = _TURNO_BARBARO;
     int x, y;
     bool todosMortos = false, todosSalvos = false;
@@ -315,6 +317,7 @@ int main(){
                                     cout << endl << "Nao pode atacar essa posicao!" << endl;
                                 else if (destino->getPersonagem()->getHP() <= 0){
                                     destino->getPersonagem()->morte();
+                                    destino->setPersonagem(nullptr);
                                     destino->setElemento('v');
                                     cout << "Inimigo derrotado!" << endl;
                                 } else {
@@ -327,6 +330,7 @@ int main(){
                                     cout << endl << "Nao pode atacar essa posicao!" << endl;
                                 else if (destino->getPersonagem()->getHP() <= 0){
                                     destino->getPersonagem()->morte();
+                                    destino->setPersonagem(nullptr);
                                     destino->setElemento('v');
                                     cout << "Inimigo derrotado!" << endl;
                                 } else {
@@ -339,6 +343,7 @@ int main(){
                                     cout << endl << "Nao pode atacar essa posicao!" << endl;
                                 else if (destino->getPersonagem()->getHP() <= 0){
                                     destino->getPersonagem()->morte();
+                                    destino->setPersonagem(nullptr);
                                     destino->setElemento('v');
                                     cout << "Inimigo derrotado!" << endl;
                                 } else {
@@ -351,6 +356,7 @@ int main(){
                                     cout << endl << "Nao pode atacar essa posicao!" << endl;
                                 else if (destino->getPersonagem()->getHP() <= 0){
                                     destino->getPersonagem()->morte();
+                                    destino->setPersonagem(nullptr);
                                     destino->setElemento('v');
                                     cout << "Inimigo derrotado!" << endl;
                                 } else {
@@ -379,6 +385,7 @@ int main(){
                                     cout << endl << "Nao pode atacar essa posicao!" << endl;
                                 else if (destino->getPersonagem()->getHP() <= 0){
                                     destino->getPersonagem()->morte();
+                                    destino->setPersonagem(nullptr);
                                     destino->setElemento('v');
                                     cout << "Inimigo derrotado!" << endl;
                                 } else {
@@ -481,8 +488,65 @@ int main(){
                         break;
                 }
             }
+
+            destino = nullptr; //Faz ponteiro de destino apontar para null quando não necessário por boas práticas
         } else { //Turnos dos inimigos
-            //TODO: Movimentações dos inimigos
+            alvoInimigo = inimigoA->scan(mapa);
+            if (alvoInimigo != inimigoA->getCelula()){
+                if (inimigoA->ataque(alvoInimigo)){
+                    if (alvoInimigo->getPersonagem()->getHP() <= 0){
+                        alvoInimigo->getPersonagem()->morte();
+                        alvoInimigo->setPersonagem(nullptr);
+                        alvoInimigo->setElemento('v');
+                    }
+                }
+            }
+
+            alvoInimigo = inimigoB->scan(mapa);
+            if (alvoInimigo != inimigoB->getCelula()){
+                if (inimigoB->ataque(alvoInimigo)){
+                    if (alvoInimigo->getPersonagem()->getHP() <= 0){
+                        alvoInimigo->getPersonagem()->morte();
+                        alvoInimigo->setPersonagem(nullptr);
+                        alvoInimigo->setElemento('v');
+                    }
+                }
+            }
+
+            alvoInimigo = inimigoC->scan(mapa);
+            if (alvoInimigo != inimigoC->getCelula()){
+                if (inimigoC->ataque(alvoInimigo)){
+                    if (alvoInimigo->getPersonagem()->getHP() <= 0){
+                        alvoInimigo->getPersonagem()->morte();
+                        alvoInimigo->setPersonagem(nullptr);
+                        alvoInimigo->setElemento('v');
+                    }
+                }
+            }
+
+            alvoInimigo = inimigoD->scan(mapa);
+            if (alvoInimigo != inimigoD->getCelula()){
+                if (inimigoD->ataque(alvoInimigo)){
+                    if (alvoInimigo->getPersonagem()->getHP() <= 0){
+                        alvoInimigo->getPersonagem()->morte();
+                        alvoInimigo->setPersonagem(nullptr);
+                        alvoInimigo->setElemento('v');
+                    }
+                }
+            }
+
+            alvoInimigo = inimigoE->scan(mapa);
+            if (alvoInimigo != inimigoE->getCelula()){
+                if (inimigoE->ataque(alvoInimigo)){
+                    if (alvoInimigo->getPersonagem()->getHP() <= 0){
+                        alvoInimigo->getPersonagem()->morte();
+                        alvoInimigo->setPersonagem(nullptr);
+                        alvoInimigo->setElemento('v');
+                    }
+                }
+            }
+
+            alvoInimigo = nullptr; //Faz ponteiro para alvo apontar para null quando não necessário por boas práticas
         }
     }
 
