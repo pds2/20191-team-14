@@ -5,9 +5,13 @@ Guerreiro::Guerreiro(int totalHP, int totalMP, int totalSP, int dano, char direc
             _escudo = 0;
         }
 
+int Guerreiro::getEscudo(){
+    return _escudo;
+}
+
 void Guerreiro::setHP(int HP){
     if(_escudo > 0){
-        if(HP >= _escudo)
+        if(HP > _escudo)
             _HP -= (HP-_escudo);
         else
             _escudo -= HP;

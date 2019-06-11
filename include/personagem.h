@@ -29,7 +29,7 @@ class Personagem {
         void setTotalHP(int totalHP);
 
         int getHP();
-        void setHP(int HP);
+        virtual void setHP(int HP);
 
         int getTotalMP();
         void setTotalMP(int totalMP);

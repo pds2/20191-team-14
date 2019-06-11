@@ -15,7 +15,10 @@ class Guerreiro : public Personagem {
     public:
         Guerreiro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula);
 
+        int getEscudo();
+
         void setHP(int HP);
+        
         bool ataque(Celula* alvo) override;
         bool escudo();
 };
