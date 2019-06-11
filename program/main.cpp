@@ -1,11 +1,3 @@
-#include <iostream>
-#include "celula.h"
-#include "barbaro.h"
-#include "guerreiro.h"
-#include "ladrao.h"
-#include "mago.h"
-#include "inimigoum.h"
-#include "inimigodois.h"
 #include "gerarMapa.h"
 #include "gerarPersonagens.h"
 
