@@ -1,32 +1,19 @@
-#include "guerreiro.h"
+#include "inimigoum.h"
 
-Guerreiro::Guerreiro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
-        Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {
-            _escudo = 0;
-        }
+InimigoUm::InimigoUm(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
+        Inimigo(totalHP, totalMP, totalSP, dano, direcao, celula) {}
 
-void Guerreiro::setHP(int HP){
-    if(_escudo > 0){
-        if(HP >= _escudo)
-            _HP -= (HP-_escudo);
-        else
-            _escudo -= HP;
-    }
-    else
-        _HP -= HP;
-}
-
-bool Guerreiro::ataque(Celula* alvo){
+bool InimigoUm::ataque(Celula* alvo){
     int distancia;
     char direcaoAntiga = _direcao;
 
-    if (_SP < _CUSTO_ATAQUE_BASICO) //Se o personagem não possui SPs o suficiente, retorna falso
+    if (_SP < _CUSTO_ATAQUE_BASICO) //Se o inimigo não possui SPs o suficiente, retorna falso
         return false;
 
     if (alvo->getPersonagem() == nullptr) //Se não há ninguém a ser atacado, retorna falso
         return false;
 
-    //Verifica se o inimigo está ao alcance do guerreiro
+    //Verifica se o personagem está ao alcance do inimigo
     if (alvo->getX() > _celula->getX()){
         distancia = alvo->getX() - _celula->getX();
         _direcao = 'L';
@@ -53,16 +40,4 @@ bool Guerreiro::ataque(Celula* alvo){
         _direcao = direcaoAntiga;
         return false;
     }
-}
-
-bool Guerreiro::escudo(){
-    if(_SP < _CUSTO_ESCUDO) //Se não tiver SP o bastante
-        return false;
-
-    if(_escudo > 0) //Se escudo já tiver sido usado, não acumular
-        return false;
-
-    _SP -= _CUSTO_ESCUDO;
-    _escudo += _BONUS_ESCUDO;
-    return true;
 }

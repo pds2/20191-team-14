@@ -109,7 +109,6 @@ bool Personagem::movimenta(Celula* destino){
     //Verifica se o personagem possui MPs suficientes
     if (movimentosX + movimentosY <= _MP) {
         _MP -= movimentosX + movimentosY;
-        destino->setElemento('j');
         return true; //Se o movimento é válido, retorna true
     } else {
         _direcao = direcaoAntiga;
