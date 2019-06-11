@@ -1,6 +1,5 @@
 #include "ladrao.h"
 
-
 Ladrao::Ladrao(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
         Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {
             _danoCritico = _dano * _BONUS_CRITICO;
@@ -62,9 +61,11 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
     char direcaoAntiga = _direcao;
 
     if (_SP < _CUSTO_ATAQUE_ARCO) //Se o personagem não possui SPs o suficiente, retorna falso
+        throw std::sem_SP("SP insulficiente para skill");
         return false;
 
     if (alvo->getPersonagem() == nullptr) //Se não há ninguém a ser atacado, retorna falso
+        throw std::sem_inimigo("Nao existe inimigos nesta celula");
         return false;
 
     //Verifica se o inimigo está ao alcance do arco do ladrão e se há obstáculos entre eles
@@ -73,6 +74,7 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
 
         for (int i = alvo->getX() - 1; i > _celula->getX(); i--){
             if (mapa[i][alvo->getY()].getElemento() != 'v'){ //Se obstáculo for encontrado horizontalmente, retorna false
+                throw std::obstaculo("Nao pode atacar, muito longe ou obstaculo no caminho");
                 return false;
             }
         }
@@ -83,6 +85,7 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
 
         for (int i = alvo->getX() + 1; i < _celula->getX(); i++){
             if (mapa[i][alvo->getY()].getElemento() != 'v'){ //Se obstáculo for encontrado horizontalmente, retorna false
+                throw std::obstaculo("Nao pode atacar, muito longe ou obstaculo no caminho");
                 return false;
             }
         }
@@ -96,6 +99,7 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
 
         for (int i = alvo->getY() - 1; i > _celula->getY(); i--){
             if (mapa[alvo->getX()][i].getElemento() != 'v'){ //Se obstáculo for encontrado verticalmente, retorna false
+                throw std::obstaculo("Nao pode atacar, muito longe ou obstaculo no caminho");
                 return false;
             }
         }
@@ -106,6 +110,7 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
 
         for (int i = alvo->getY() + 1; i < _celula->getY(); i++){
             if (mapa[alvo->getX()][i].getElemento() != 'v'){ //Se obstáculo for encontrado verticalmente, retorna false
+                throw std::obstaculo("Nao pode atacar, muito longe ou obstaculo no caminho");
                 return false;
             }
         }
@@ -120,6 +125,7 @@ bool Ladrao::arco(Celula* alvo, Celula** mapa){
         return true;
     } else { //Retorna false e reseta direção se for inválido
         _direcao = direcaoAntiga;
+        throw std::alcance("Voce nao tem alcance para esse ataque");
         return false;
     }
 }
