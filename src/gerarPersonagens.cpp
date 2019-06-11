@@ -66,7 +66,7 @@ void deletaMago(Mago* mago){
 //Cria Inimigo 1
 InimigoUm* criaInimigoUm(Celula celula){
     Celula* celulaPtr = &celula;
-    InimigoUm* inimigo = new InimigoUm(_INIMIGO1_HP, _MP, _SP, _INIMIGO1_DANO, _DIRECAO_PADRAO, celulaPtr);
+    InimigoUm* inimigo = new InimigoUm(_INIMIGO1_HP, _INIMIGO1_MP, _SP, _INIMIGO1_DANO, _DIRECAO_PADRAO, celulaPtr);
 
     celulaPtr = nullptr;
 
@@ -81,7 +81,7 @@ void deletaInimigoUm(InimigoUm* inimigo){
 //Cria Inimigo 2
 InimigoDois* criaInimigoDois(Celula celula){
     Celula* celulaPtr = &celula;
-    InimigoDois* inimigo = new InimigoDois(_INIMIGO1_HP, _MP, _SP, _INIMIGO1_DANO, _DIRECAO_PADRAO, celulaPtr);
+    InimigoDois* inimigo = new InimigoDois(_INIMIGO1_HP, _INIMIGO2_MP, _SP, _INIMIGO2_DANO, _DIRECAO_PADRAO, celulaPtr);
 
     celulaPtr = nullptr;
 
@@ -96,7 +96,7 @@ void deletaInimigoDois(InimigoDois* inimigo){
 //Cria pedra
 Pedra* criaPedra(Celula celula){
     Celula* celulaPtr = &celula;
-    Pedra* pedra = new InimigoDois(_PEDRA_HP, 0, 0,0, _DIRECAO_PADRAO, celulaPtr);
+    Pedra* pedra = new Pedra(_PEDRA_HP, 0, 0,0, _DIRECAO_PADRAO, celulaPtr);
 
     celulaPtr = nullptr;
 

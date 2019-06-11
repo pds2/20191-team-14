@@ -27,11 +27,13 @@
 #define _MAGO_HP 80
 #define _MAGO_DANO 20
 
-#define _INIMIGO1_HP 85
-#define _INIMIGO1_DANO 15
+#define _INIMIGO1_HP 100
+#define _INIMIGO1_MP 2
+#define _INIMIGO1_DANO 20
 
-#define _INIMIGO2_HP 70
-#define _INIMIGO2_DANO 17
+#define _INIMIGO2_HP 150
+#define _INIMIGO2_MP 1
+#define _INIMIGO2_DANO 35
 
 #define _PEDRA_HP 1
 
