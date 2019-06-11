@@ -1,8 +1,13 @@
 /*O mapa é uma matriz de celulas*/
 /*A variável 'elemento' representa o que tem na célula:
-    j - jogador
-    m - monstro
+    b - bárbaro
+    g - guerreiro
+    l - ladrão
+    m - mago
+    1 - inimigo 1
+    2 - inimigo 2
     p - pedra
+    s - saída
     i - invulnerável (Parede, por exemplo)
     v - vazio
     n - null (Ainda não definido)
