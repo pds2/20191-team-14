@@ -25,7 +25,7 @@ TEST_CASE("01 - teste construtor "){ //testa os construtores das classes
      CHECK_NOTHROW(InimigoDois(100, 3, 6, 30, 'N', &celula));
 }
 
-TEST_CASE ("02 - teste retorno"){
+TEST_CASE ("02 - teste retorno HP"){
      Celula celula = Celula('j',1,2); 
      Personagem personagem = Personagem(100, 3, 6, 30, 'N', &celula);
      personagem.setHP(100);
@@ -121,3 +121,28 @@ TEST_CASE ("05 - teste ataque invalido"){
      
 }
 
+TEST_CASE ("06 - teste retorno SP"){
+     Celula celula = Celula('j',1,2); 
+     Personagem personagem = Personagem(100, 3, 6, 30, 'N', &celula);
+     personagem.setSP(5);
+     CHECK(personagem.getSP()==5);
+     Guerreiro guerreiro = Guerreiro(100, 3, 6, 30, 'N', &celula);
+     guerreiro.setSP(5);
+     CHECK(guerreiro.getSP()==5);
+     Barbaro barbaro = Barbaro(100, 3, 6, 30, 'N', &celula);
+     barbaro.setSP(5);
+     CHECK(barbaro.getSP()==5);
+     Ladrao ladrao = Ladrao(100, 3, 6, 30, 'N', &celula);
+     CHECK(ladrao.getSP()==6);
+     Mago mago = Mago(100, 3, 6, 30, 'N', &celula);
+     CHECK(mago.getSP()==6);
+     Inimigo inimigo = Inimigo(100, 3, 6, 30, 'N', &celula);
+     inimigo.setSP(5);
+     CHECK(inimigo.getSP()==5);
+     InimigoUm inimigoum = InimigoUm(100, 3, 6, 30, 'n', &celula);
+     inimigoum.setSP(2);
+     CHECK(inimigoum.getSP()==2);
+     InimigoDois inimigodois = InimigoDois(100, 3, 6, 30, 'n', &celula);
+     inimigodois.setSP(4);
+     CHECK(inimigodois.getSP()==4);
+}
