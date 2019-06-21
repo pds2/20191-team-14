@@ -15,7 +15,7 @@ O desenvolvimento de jogos é um dos importantes usos dos Sistemas de Informaç�
   
 2.   Implementação
 
-		O código foi implementado detalhadamente, com comentários e indentação, utilizando componentes modularizados e reusáveis.
+O código foi implementado detalhadamente, com comentários e indentação, utilizando componentes modularizados e reusáveis.
 
 Pasta Include: nesta pasta estão todos os arquivos.h do código. O arquivo personagem.h é a classe mãe que determina atributos para todos os outros “arquivos .h”, por meio de herança. Estas atribuem novos atributos característicos de cada personagem, por meio de polimorfismo.
 
@@ -24,6 +24,7 @@ Pasta program: inclui o main.cpp, que possui funções de criação do mapa, dos
 Pasta src: nesta pasta estão os arquivos .cpp do código. Estes determinam as execuções das funções dos arquivos .h.
 
 Pasta tests: inclui o testes.cpp, que é o código para testes unitários de todo o programa.
+
 
  
 3.   Testes
@@ -80,3 +81,4 @@ Listagem dos programas:
 ..
  
 
+  
