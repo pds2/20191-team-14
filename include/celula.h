@@ -15,7 +15,7 @@
 #ifndef GAME_CELULA_H
 #define GAME_CELULA_H
 
-#include "personagem.h"
+class Personagem;
 
 /*Quando houver um personagem na célula, ela recebe um ponteiro para esse personagem
 O personagem será manipulado conforme as necessidades do jogo a partir deste ponteiro

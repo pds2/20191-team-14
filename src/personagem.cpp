@@ -1,4 +1,5 @@
 #include "personagem.h"
+#include "celula.h"
 #include <iostream>
 
 Personagem::Personagem(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula){
@@ -16,6 +17,14 @@ Personagem::Personagem(int totalHP, int totalMP, int totalSP, int dano, char dir
     setSalvo(false);
 }
 
+int Personagem::getTotalHP(){
+    return _totalHP;
+}
+
+void Personagem::setTotalHP(int totalHP){
+    _totalHP = totalHP;
+}
+
 int Personagem::getHP(){
     return _HP;
 }
@@ -24,12 +33,28 @@ void Personagem::setHP(int HP){
     _HP = HP;
 }
 
+int Personagem::getTotalMP(){
+    return _totalMP;
+}
+
+void Personagem::setTotalMP(int totalMP){
+    _totalMP = totalMP;
+}
+
 int Personagem::getMP(){
     return _MP;
 }
 
 void Personagem::setMP(int MP){
     _MP = MP;
+}
+
+int Personagem::getTotalSP(){
+    return _totalSP;
+}
+
+void Personagem::setTotalSP(int totalSP){
+    _totalSP = totalSP;
 }
 
 int Personagem::getSP(){
@@ -137,4 +162,12 @@ void Personagem::terminaTurno(){
 
 void Personagem::morte(){
     _vivo = false;
+}
+
+bool Personagem::ataque(Celula* alvo){
+    return false;
+}
+
+bool Personagem::ataque(Celula* alvo, Celula** mapa){
+    return false;
 }

@@ -58,7 +58,9 @@ void desenhaMapa(Celula** mapa){
     }
     cout << "    ";
     for (int i = 0; i < _LINHAS; i++)
-        cout << i << endl;
+        cout << i;
+
+    cout << endl;
 }
 
 //Fim de jogo

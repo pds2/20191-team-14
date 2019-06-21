@@ -34,9 +34,9 @@ void deletaMapa(Celula** mapa);
 void desenhaMapa(Celula** mapa);
 
 //Fim de jogo
-void gameOver();{
-    cout << "Fim de jogo! Todos os personagens estão mortos..." << endl;
-}
+void gameOver();
 
 //Jogo terminado
 void vitoria();
+
+#endif

@@ -1,7 +1,7 @@
 #ifndef GAME_PERSONAGEM_H
 #define GAME_PERSONAGEM_H
 
-#include "celula.h"
+class Celula;
 
 class Personagem {
     protected:

@@ -1,5 +1,5 @@
 #include "ladrao.h"
-
+#include "celula.h"
 
 Ladrao::Ladrao(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
         Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {
@@ -44,7 +44,7 @@ bool Ladrao::ataque(Celula* alvo){
     }
 
     if (distancia > 0 && distancia <= _ALCANCE_ADAGA){ //Conclui o ataque se ele for válido
-        if (_direcao == alvo->getPersonagem()->getDirecao){
+        if (_direcao == alvo->getPersonagem()->getDirecao()){
             alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - _danoCritico);
         } else {
             alvo->getPersonagem()->setHP(alvo->getPersonagem()->getHP() - _dano);

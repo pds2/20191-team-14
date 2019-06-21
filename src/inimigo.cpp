@@ -1,4 +1,5 @@
 #include "inimigo.h"
+#include "celula.h"
 
 Inimigo::Inimigo(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula):
     Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {}
@@ -9,7 +10,7 @@ Celula* Inimigo::scan(Celula** mapa){
 
     while (i <= _celula->getX() + _ALCANCE_VISAO && !personagemEncontrado){
         for (j = _celula->getY() - _ALCANCE_VISAO; j <= _celula->getY() + _ALCANCE_VISAO; j++){
-            if (mapa[i][j].getPersonagem() != nullptr && mapa[i][j].getElemento != '1' && mapa[i][j].getElemento != '2'){
+            if (mapa[i][j].getPersonagem() != nullptr && mapa[i][j].getElemento() != '1' && mapa[i][j].getElemento() != '2'){
                 personagemEncontrado = true;
                 personagemX = i;
                 personagemY = j;

@@ -1,4 +1,5 @@
 #include "inimigodois.h"
+#include "celula.h"
 
 InimigoDois::InimigoDois(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
         Inimigo(totalHP, totalMP, totalSP, dano, direcao, celula) {}

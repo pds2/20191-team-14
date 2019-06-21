@@ -58,7 +58,7 @@ int main(){
                 desenhaMapa(mapa);
                 escreveInformacoes(turnoAtual, barbaro, ladrao, guerreiro, mago);
                 cout << endl << "Escolha uma opcao:" << endl;
-                cout << "1 - Ataque Basico" << endl << "2 - Habilidade" << endl << "3 - Mover" << endl << "4 - Encerrar Turno";
+                cout << "1 - Ataque Basico" << endl << "2 - Habilidade" << endl << "3 - Mover" << endl << "4 - Encerrar Turno" << endl;
 
                 cin >> opcao;
                 switch (opcao){

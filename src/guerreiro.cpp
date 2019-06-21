@@ -1,4 +1,5 @@
 #include "guerreiro.h"
+#include "celula.h"
 
 Guerreiro::Guerreiro(int totalHP, int totalMP, int totalSP, int dano, char direcao, Celula* celula) : 
         Personagem(totalHP, totalMP, totalSP, dano, direcao, celula) {

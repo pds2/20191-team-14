@@ -1,4 +1,5 @@
 #include "celula.h"
+#include "personagem.h"
 
 Celula::Celula(){
     _elemento = 'n';
